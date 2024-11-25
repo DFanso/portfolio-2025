@@ -1,8 +1,14 @@
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Leo Felcianas - DevOps & Software Engineer',
+  description: 'Portfolio of Leo Felcianas, DevOps & Software Engineer',
+};
 
 export default function Home() {
   return (
-    <div className="min-h-screen p-8 space-y-12 max-w-7xl mx-auto">
+    <div className="min-h-screen p-8 space-y-12 max-w-7xl mx-auto dark:bg-[#1A1A1A] dark:text-white">
       {/* Hero Section */}
       <header className="space-y-8">
         <h1 className="heading-style">

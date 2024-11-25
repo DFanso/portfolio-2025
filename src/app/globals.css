@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ECFF8C;  /* Neon Yellow Background */
+  --background: #F0FF90;  /* Slightly softer neon yellow background */
   --foreground: #000000;
   --accent: #FF3D00;      /* Vibrant Orange-Red */
-  --yellow: #FFE600;      /* Bright Yellow */
-  --green: #00FF94;       /* Neon Green */
-  --blue: #00E6FF;        /* Electric Blue */
-  --purple: #BC00FF;      /* Bright Purple */
-  --pink: #FF00E5;        /* Hot Pink */
+  --yellow: #FFD100;      /* Warmer Yellow */
+  --green: #00FFB2;       /* Mint Green */
+  --blue: #4DFFFF;        /* Brighter Cyan */
+  --purple: #D946EF;      /* Softer Purple */
+  --pink: #FF40BF;        /* Softer Hot Pink */
   --card-bg: #ffffff;
 }
 
@@ -18,8 +18,9 @@
   body {
     @apply bg-[var(--background)] text-[var(--foreground)] cursor-crosshair selection:bg-[var(--accent)] selection:text-white;
     background-image: 
-      radial-gradient(circle at 100% 100%, var(--purple) 0, transparent 20%),
-      radial-gradient(circle at 0% 0%, var(--green) 0, transparent 20%);
+      radial-gradient(circle at 100% 100%, rgba(217, 70, 239, 0.2) 0, transparent 30%),
+      radial-gradient(circle at 0% 0%, rgba(0, 255, 178, 0.2) 0, transparent 30%),
+      repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 2px, transparent 2px, transparent 4px);
     background-attachment: fixed;
   }
 }
@@ -60,7 +61,7 @@
   }
 
   .skill-tag {
-    @apply px-4 py-2 neo-brutalism text-sm font-bold transform transition-transform hover:scale-105;
+    @apply px-4 py-2 neo-brutalism text-sm font-bold transform transition-transform hover:scale-105 hover:rotate-1;
   }
 }
 
