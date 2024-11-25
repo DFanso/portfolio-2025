@@ -274,7 +274,7 @@ export default function Home() {
             ].map((project, index) => (
               <motion.div 
                 key={project.title}
-                className="card space-y-4 hover-target gradient-border"
+                className="card space-y-4 hover-target"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
