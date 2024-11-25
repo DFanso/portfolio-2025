@@ -30,11 +30,11 @@ export default function Home() {
       <section className="card space-y-6">
         <h2 className="text-3xl font-bold">Top Skills</h2>
         <div className="flex flex-wrap gap-3">
-          <span className="skill-tag bg-[var(--yellow)]">Load Testing</span>
-          <span className="skill-tag bg-[var(--green)]">Infrastructure as Code</span>
-          <span className="skill-tag bg-[var(--blue)]">Azure DevOps</span>
-          <span className="skill-tag bg-[var(--purple)] text-white">MERN Stack</span>
-          <span className="skill-tag bg-[var(--pink)] text-white">Docker</span>
+          <span className="skill-tag bg-[var(--yellow)] text-black">Load Testing</span>
+          <span className="skill-tag bg-[var(--green)] text-black">Infrastructure as Code</span>
+          <span className="skill-tag bg-[var(--blue)] text-black">Azure DevOps</span>
+          <span className="skill-tag bg-[var(--purple)] text-black dark:text-white">MERN Stack</span>
+          <span className="skill-tag bg-[var(--pink)] text-black dark:text-white">Docker</span>
           <span className="skill-tag bg-[var(--accent)] text-white">AWS</span>
         </div>
       </section>

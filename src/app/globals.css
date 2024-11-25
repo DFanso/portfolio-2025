@@ -3,15 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --background: #F0FF90;  /* Slightly softer neon yellow background */
+  --background: #F0FF90;
   --foreground: #000000;
-  --accent: #FF3D00;      /* Vibrant Orange-Red */
-  --yellow: #FFD100;      /* Warmer Yellow */
-  --green: #00FFB2;       /* Mint Green */
-  --blue: #4DFFFF;        /* Brighter Cyan */
-  --purple: #D946EF;      /* Softer Purple */
-  --pink: #FF40BF;        /* Softer Hot Pink */
+  --accent: #FF3D00;
+  --yellow: #FFD100;
+  --green: #7CFFC4;
+  --blue: #70DDFF;
+  --purple: #E5A0FF;
+  --pink: #FFB7E7;
   --card-bg: #ffffff;
+}
+
+.dark {
+  --background: #1A1A1A;
+  --foreground: #ffffff;
+  --card-bg: #2A2A2A;
+  --yellow: #FFE047;
+  --green: #47FFB2;
+  --blue: #47D1FF;
+  --purple: #D47AFF;
+  --pink: #FF7AD4;
 }
 
 @layer base {
@@ -74,6 +85,11 @@
     --background: #1A1A1A;
     --foreground: #ffffff;
     --card-bg: #2A2A2A;
+    --yellow: #FFE047;
+    --green: #47FFB2;
+    --blue: #47D1FF;
+    --purple: #D47AFF;
+    --pink: #FF7AD4;
   }
 
   .card {
