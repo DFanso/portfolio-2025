@@ -15,7 +15,7 @@ export default function Home() {
           Specialized in DevOps pipelines and Backend development. Passionate about creating efficient and scalable solutions.
         </p>
         <div className="flex gap-4">
-          <a href="mailto:leogavin123@outlook.com" className="button bg-[var(--yellow)]">Get in Touch</a>
+          <a href="mailto:leogavin123@outlook.com" className="button bg-[var(--green)] text-black">Get in Touch</a>
           <a href="tel:+940772067102" className="button neo-brutalism-accent">Call Me</a>
         </div>
       </header>
@@ -79,9 +79,9 @@ export default function Home() {
             <h3 className="text-2xl font-bold">QuickQuest</h3>
             <p>A platform connecting customers with laborers using geospatial queries and real-time chat.</p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-[var(--yellow)] neo-brutalism text-sm font-bold">Nest.js</span>
-              <span className="px-3 py-1 bg-[var(--green)] neo-brutalism text-sm font-bold">Next.js</span>
-              <span className="px-3 py-1 bg-[var(--blue)] neo-brutalism text-sm font-bold">MongoDB</span>
+              <span className="px-3 py-1 bg-[var(--yellow)] neo-brutalism text-sm font-bold text-black">Nest.js</span>
+              <span className="px-3 py-1 bg-[var(--green)] neo-brutalism text-sm font-bold text-black">Next.js</span>
+              <span className="px-3 py-1 bg-[var(--blue)] neo-brutalism text-sm font-bold text-black">MongoDB</span>
             </div>
           </div>
 
@@ -89,8 +89,8 @@ export default function Home() {
             <h3 className="text-2xl font-bold">CineMagic Cinema</h3>
             <p>Online ticket booking system with client, admin, and server components. Integrated with PayPal and OMDB API.</p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-[var(--purple)] neo-brutalism text-sm font-bold text-white">React.js</span>
-              <span className="px-3 py-1 bg-[var(--pink)] neo-brutalism text-sm font-bold text-white">Nest.js</span>
+              <span className="px-3 py-1 bg-[var(--purple)] neo-brutalism text-sm font-bold text-black dark:text-white">React.js</span>
+              <span className="px-3 py-1 bg-[var(--pink)] neo-brutalism text-sm font-bold text-black dark:text-white">Nest.js</span>
               <span className="px-3 py-1 bg-[var(--accent)] neo-brutalism text-sm font-bold text-white">MongoDB</span>
             </div>
           </div>
@@ -102,11 +102,11 @@ export default function Home() {
         <h2 className="text-3xl font-bold">Let's Connect</h2>
         <div className="flex flex-wrap gap-4">
           <a href="https://www.linkedin.com/in/leogavin" target="_blank" rel="noopener noreferrer" 
-             className="button bg-[var(--blue)]">LinkedIn</a>
+             className="button bg-[var(--blue)] text-black">LinkedIn</a>
           <a href="https://github.com/DFanso" target="_blank" rel="noopener noreferrer" 
-             className="button bg-[var(--purple)] text-white">GitHub</a>
+             className="button bg-[var(--purple)] text-black dark:text-white">GitHub</a>
           <a href="https://dfanso.github.io/Portfolio-Site/" target="_blank" rel="noopener noreferrer" 
-             className="button bg-[var(--green)]">Portfolio</a>
+             className="button bg-[var(--green)] text-black">Portfolio</a>
         </div>
         <div className="mt-4 space-y-2">
           <p className="font-bold">📧 leogavin123@outlook.com</p>
