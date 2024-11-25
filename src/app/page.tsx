@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -64,7 +65,7 @@ export default function Home() {
             className="heading-style"
             variants={fadeInUp}
           >
-            Hey, I'm <span className="gradient-text animate-float">Leo Felcianas</span>
+            Hey, I'm <span className="name-animation">Leo Felcianas</span>
             <br className="hidden sm:block" />
             DevOps & Software Engineer
           </motion.h1>
@@ -301,18 +302,32 @@ export default function Home() {
 
         {/* Contact Section */}
         <motion.section 
-          className="card space-y-6"
+          className="card contact-card space-y-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold">Let's Connect</h2>
-          <div className="flex flex-wrap gap-4">
+          <h2 className="text-3xl font-bold gradient-text">Let's Connect</h2>
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
             {[
-              { text: "LinkedIn", href: "https://www.linkedin.com/in/leogavin", color: "blue" },
-              { text: "GitHub", href: "https://github.com/DFanso", color: "purple" },
-              { text: "Portfolio", href: "https://dfanso.github.io/Portfolio-Site/", color: "green" }
+              { 
+                text: "LinkedIn", 
+                href: "https://www.linkedin.com/in/leogavin", 
+                color: "blue",
+                icon: <FaLinkedin className="text-2xl" />
+              },
+              { 
+                text: "GitHub", 
+                href: "https://github.com/DFanso", 
+                color: "purple",
+                icon: <FaGithub className="text-2xl" />
+              }
             ].map((link, index) => (
               <motion.a
                 key={link.text}
@@ -320,23 +335,59 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-color={link.color}
-                className="button text-black hover-target shine"
-                whileHover={{ scale: 1.05 }}
+                className="button text-black hover-target shine flex items-center justify-center gap-3"
+                whileHover={{ scale: 1.05, y: -5 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
+                {link.icon}
                 {link.text}
               </motion.a>
             ))}
-          </div>
-          <div className="mt-4 space-y-2">
-            <p className="font-bold"> leogavin123@outlook.com</p>
-            <p className="font-bold"> +94 772067102</p>
-            <p className="font-bold"> 32/2, Wasantha Uayana, Thabbowa, Nattandiya</p>
-          </div>
+          </motion.div>
+
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            <motion.div 
+              className="contact-item bg-white dark:bg-[#2A2A2A]"
+              variants={fadeInUp}
+            >
+              <h3 className="text-lg font-bold mb-2 gradient-text">Email</h3>
+              <p className="flex items-center">
+                <span className="text-xl mr-2">📧</span>
+                leogavin123@outlook.com
+              </p>
+            </motion.div>
+
+            <motion.div 
+              className="contact-item bg-white dark:bg-[#2A2A2A]"
+              variants={fadeInUp}
+            >
+              <h3 className="text-lg font-bold mb-2 gradient-text">Phone</h3>
+              <p className="flex items-center">
+                <span className="text-xl mr-2">📱</span>
+                +94 772067102
+              </p>
+            </motion.div>
+
+            <motion.div 
+              className="contact-item bg-white dark:bg-[#2A2A2A] sm:col-span-2"
+              variants={fadeInUp}
+            >
+              <h3 className="text-lg font-bold mb-2 gradient-text">Address</h3>
+              <p className="flex items-center">
+                <span className="text-xl mr-2">📍</span>
+                32/2, Wasantha Uayana, Thabbowa, Nattandiya
+              </p>
+            </motion.div>
+          </motion.div>
         </motion.section>
       </div>
     </>
