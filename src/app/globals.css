@@ -5,11 +5,11 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
-  --yellow: #F0FF90;
-  --green: #90FFB0;
-  --blue: #90D5FF;
+  --yellow: #FFE047;
+  --green: #47FFB2;
+  --blue: #47D1FF;
   --purple: #B090FF;
-  --pink: #FF90D5;
+  --pink: #FFB5EA;
   --accent: #FF5733;
   --card-bg: #ffffff;
 }
@@ -71,6 +71,26 @@
     @apply px-4 py-2 rounded-lg font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] 
     hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none 
     transition-all duration-150;
+    background-color: var(--yellow);
+  }
+
+  .skill-tag[data-color="yellow"] {
+    background-color: var(--yellow);
+  }
+  .skill-tag[data-color="green"] {
+    background-color: var(--green);
+  }
+  .skill-tag[data-color="blue"] {
+    background-color: var(--blue);
+  }
+  .skill-tag[data-color="purple"] {
+    background-color: var(--purple);
+  }
+  .skill-tag[data-color="pink"] {
+    background-color: var(--pink);
+  }
+  .skill-tag[data-color="accent"] {
+    background-color: var(--accent);
   }
 }
 

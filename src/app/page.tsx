@@ -81,9 +81,8 @@ export default function Home() {
           ].map((skill, index) => (
             <motion.span
               key={skill.text}
-              className={`skill-tag bg-[var(--${skill.color})] ${
-                skill.color === 'accent' ? 'text-white' : 'text-black dark:text-white'
-              }`}
+              data-color={skill.color}
+              className="skill-tag text-black"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -205,7 +204,7 @@ export default function Home() {
                 className={`px-3 py-1 text-sm font-bold neo-brutalism
                   ${index % 3 === 0 ? 'bg-[var(--yellow)]' : 
                     index % 3 === 1 ? 'bg-[var(--green)]' : 'bg-[var(--blue)]'}
-                  text-black dark:text-white`}
+                  text-black`}
               >
                 {tech}
               </span>
@@ -260,9 +259,8 @@ export default function Home() {
                 {project.tech.map(tech => (
                   <span 
                     key={tech.name}
-                    className={`px-3 py-1 bg-[var(--${tech.color})] neo-brutalism text-sm font-bold ${
-                      tech.color === 'accent' ? 'text-white' : 'text-black dark:text-white'
-                    }`}
+                    data-color={tech.color}
+                    className="skill-tag text-black text-sm"
                   >
                     {tech.name}
                   </span>
@@ -293,9 +291,7 @@ export default function Home() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`button bg-[var(--${link.color})] ${
-                link.color === 'purple' ? 'text-black dark:text-white' : 'text-black dark:text-white'
-              }`}
+              className={`button bg-[var(--${link.color})] text-black`}
               whileHover={{ scale: 1.05 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
