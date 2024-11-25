@@ -291,7 +291,8 @@ export default function Home() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`button bg-[var(--${link.color})] text-black`}
+              data-color={link.color}
+              className="button text-black"
               whileHover={{ scale: 1.05 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
