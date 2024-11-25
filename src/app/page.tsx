@@ -294,7 +294,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               className={`button bg-[var(--${link.color})] ${
-                link.color === 'purple' ? 'text-black dark:text-white' : 'text-black'
+                link.color === 'purple' ? 'text-black dark:text-white' : 'text-black dark:text-white'
               }`}
               whileHover={{ scale: 1.05 }}
               initial={{ opacity: 0, y: 20 }}

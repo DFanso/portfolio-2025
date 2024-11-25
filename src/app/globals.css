@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #F0FF90;
+  --background: #ffffff;
   --foreground: #000000;
-  --accent: #FF3D00;
-  --yellow: #FFD100;
-  --green: #7CFFC4;
-  --blue: #70DDFF;
-  --purple: #E5A0FF;
-  --pink: #FFB7E7;
+  --yellow: #F0FF90;
+  --green: #90FFB0;
+  --blue: #90D5FF;
+  --purple: #B090FF;
+  --pink: #FF90D5;
+  --accent: #FF5733;
   --card-bg: #ffffff;
 }
 
@@ -18,16 +18,11 @@
   --background: #1A1A1A;
   --foreground: #ffffff;
   --card-bg: #2A2A2A;
-  --yellow: #FFE047;
-  --green: #47FFB2;
-  --blue: #47D1FF;
-  --purple: #D47AFF;
-  --pink: #FF7AD4;
 }
 
 @layer base {
   body {
-    @apply bg-[var(--background)] text-[var(--foreground)] cursor-crosshair selection:bg-[var(--accent)] selection:text-white;
+    @apply bg-white dark:bg-[#1A1A1A] text-black dark:text-white transition-colors duration-300;
     background-image: 
       radial-gradient(circle at 100% 100%, rgba(217, 70, 239, 0.2) 0, transparent 30%),
       radial-gradient(circle at 0% 0%, rgba(0, 255, 178, 0.2) 0, transparent 30%),
@@ -38,26 +33,24 @@
 
 @layer components {
   .neo-brutalism {
-    @apply border-4 border-black bg-[var(--card-bg)] rounded-sm shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] 
-    hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] 
-    active:translate-x-2 active:translate-y-2 active:shadow-none 
-    transition-all duration-200;
+    @apply border-2 border-black rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
   }
   
   .neo-brutalism-accent {
-    @apply border-4 border-black bg-[var(--accent)] rounded-sm shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] 
-    hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] 
-    active:translate-x-2 active:translate-y-2 active:shadow-none 
-    transition-all duration-200 text-white;
+    @apply bg-[var(--accent)] text-white border-2 border-black rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
   }
 
   .heading-style {
-    @apply font-black text-5xl md:text-7xl tracking-tight leading-tight;
+    @apply text-4xl md:text-6xl font-bold;
     text-shadow: 4px 4px 0px var(--accent);
   }
 
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent)] to-[var(--purple)];
+  }
+
   .card {
-    @apply p-8 neo-brutalism;
+    @apply bg-white dark:bg-[#2A2A2A] p-6 rounded-lg shadow-lg border-2 border-black;
     background: repeating-linear-gradient(
       -45deg,
       var(--card-bg),
@@ -68,16 +61,17 @@
   }
 
   .button {
-    @apply px-6 py-3 neo-brutalism font-bold text-lg hover:cursor-pointer inline-block text-center;
+    @apply px-6 py-3 rounded-lg font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] 
+    hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none 
+    transition-all duration-150 hover:translate-x-[2px] hover:translate-y-[2px]
+    active:translate-x-[4px] active:translate-y-[4px];
   }
 
   .skill-tag {
-    @apply px-4 py-2 neo-brutalism text-sm font-bold transform transition-transform hover:scale-105 hover:rotate-1;
+    @apply px-4 py-2 rounded-lg font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] 
+    hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none 
+    transition-all duration-150;
   }
-}
-
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent)] to-[var(--purple)];
 }
 
 @media (prefers-color-scheme: dark) {
