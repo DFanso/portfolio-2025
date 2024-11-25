@@ -72,12 +72,17 @@ export default function Home() {
           animate="animate"
         >
           {[
-            { text: "Load Testing", color: "yellow" },
-            { text: "Infrastructure as Code", color: "green" },
-            { text: "Azure DevOps", color: "blue" },
-            { text: "MERN Stack", color: "purple" },
-            { text: "Docker", color: "pink" },
-            { text: "AWS", color: "accent" }
+            { text: "Backend Development", color: "yellow" },
+            { text: "NestJS", color: "green" },
+            { text: "TypeORM", color: "blue" },
+            { text: "SQL", color: "purple" },
+            { text: "System Architecture", color: "pink" },
+            { text: "Load Testing", color: "accent" },
+            { text: "Infrastructure as Code", color: "yellow" },
+            { text: "Azure DevOps", color: "green" },
+            { text: "MERN Stack", color: "blue" },
+            { text: "Docker", color: "purple" },
+            { text: "AWS", color: "pink" }
           ].map((skill, index) => (
             <motion.span
               key={skill.text}
