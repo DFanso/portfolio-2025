@@ -1,10 +1,4 @@
 import Image from "next/image";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: 'Leo Felcianas - DevOps & Software Engineer',
-  description: 'Portfolio of Leo Felcianas, DevOps & Software Engineer',
-};
 
 export default function Home() {
   return (
@@ -18,7 +12,7 @@ export default function Home() {
         </h1>
         <p className="text-xl font-bold max-w-2xl">
           Associate DevOps Engineer at Empite | First Class Honours Graduate from University of Plymouth | 
-          Specialized in DevOps pipelines and Backend development.
+          Specialized in DevOps pipelines and Backend development. Passionate about creating efficient and scalable solutions.
         </p>
         <div className="flex gap-4">
           <a href="mailto:leogavin123@outlook.com" className="button bg-[var(--yellow)]">Get in Touch</a>
@@ -42,15 +36,38 @@ export default function Home() {
       {/* Experience Section */}
       <section className="space-y-8">
         <h2 className="text-3xl font-bold">Experience</h2>
-        <div className="card space-y-4">
-          <div className="flex justify-between items-start flex-wrap gap-4">
-            <div>
-              <h3 className="text-2xl font-bold">Empite</h3>
-              <p className="text-lg font-bold text-[var(--accent)]">Associate DevOps Engineer</p>
+        <div className="space-y-6">
+          <div className="card space-y-4">
+            <div className="flex justify-between items-start flex-wrap gap-4">
+              <div>
+                <h3 className="text-2xl font-bold">Empite</h3>
+                <p className="text-lg font-bold text-[var(--accent)]">Associate DevOps Engineer</p>
+              </div>
+              <span className="neo-brutalism px-3 py-1 text-sm font-bold bg-[var(--yellow)]">Nov 2024 - Present</span>
             </div>
-            <span className="neo-brutalism px-3 py-1 text-sm font-bold bg-[var(--yellow)]">Nov 2024 - Present</span>
+            <p>DevOps engineering and infrastructure management</p>
           </div>
-          <p>DevOps engineering and infrastructure management</p>
+          
+          <div className="card space-y-4">
+            <div className="flex justify-between items-start flex-wrap gap-4">
+              <div>
+                <h3 className="text-2xl font-bold">ASTRONEX</h3>
+                <p className="text-lg font-bold text-[var(--accent)]">Director of Data Science & IT Division</p>
+              </div>
+              <span className="neo-brutalism px-3 py-1 text-sm font-bold bg-[var(--yellow)]">Jul 2023 - Present</span>
+            </div>
+          </div>
+          
+          <div className="card space-y-4">
+            <div className="flex justify-between items-start flex-wrap gap-4">
+              <div>
+                <h3 className="text-2xl font-bold">Fiverr</h3>
+                <p className="text-lg font-bold text-[var(--accent)]">Software Engineer</p>
+              </div>
+              <span className="neo-brutalism px-3 py-1 text-sm font-bold bg-[var(--yellow)]">May 2023 - Present</span>
+            </div>
+            <p>Developing applications using MERN stack, Discord bots, Firebase, Next.js, NestJS, and OpenAI</p>
+          </div>
         </div>
       </section>
 
@@ -69,12 +86,12 @@ export default function Home() {
           </div>
 
           <div className="card space-y-4">
-            <h3 className="text-2xl font-bold">B2B Portal</h3>
-            <p>Java Spring Boot microservices project for secure B2B product purchases.</p>
+            <h3 className="text-2xl font-bold">CineMagic Cinema</h3>
+            <p>Online ticket booking system with client, admin, and server components. Integrated with PayPal and OMDB API.</p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-[var(--purple)] neo-brutalism text-sm font-bold text-white">Spring Boot</span>
-              <span className="px-3 py-1 bg-[var(--pink)] neo-brutalism text-sm font-bold text-white">Docker</span>
-              <span className="px-3 py-1 bg-[var(--accent)] neo-brutalism text-sm font-bold text-white">Postgres</span>
+              <span className="px-3 py-1 bg-[var(--purple)] neo-brutalism text-sm font-bold text-white">React.js</span>
+              <span className="px-3 py-1 bg-[var(--pink)] neo-brutalism text-sm font-bold text-white">Nest.js</span>
+              <span className="px-3 py-1 bg-[var(--accent)] neo-brutalism text-sm font-bold text-white">MongoDB</span>
             </div>
           </div>
         </div>
@@ -94,7 +111,7 @@ export default function Home() {
         <div className="mt-4 space-y-2">
           <p className="font-bold">📧 leogavin123@outlook.com</p>
           <p className="font-bold">📱 +94 772067102</p>
-          <p className="font-bold">📍 Colombo, Western Province, Sri Lanka</p>
+          <p className="font-bold">📍 32/2, Wasantha Uayana, Thabbowa, Nattandiya</p>
         </div>
       </section>
     </div>
