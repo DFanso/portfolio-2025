@@ -41,8 +41,11 @@
   }
 
   .heading-style {
-    @apply text-4xl md:text-6xl font-bold;
-    text-shadow: 4px 4px 0px var(--accent);
+    @apply text-3xl sm:text-4xl md:text-6xl font-bold;
+    text-shadow: 2px 2px 0px var(--accent);
+    @screen md {
+      text-shadow: 4px 4px 0px var(--accent);
+    }
   }
 
   .gradient-text {
@@ -50,7 +53,7 @@
   }
 
   .card {
-    @apply bg-white dark:bg-[#2A2A2A] p-6 rounded-lg shadow-lg border-2 border-black;
+    @apply bg-white dark:bg-[#2A2A2A] p-4 sm:p-6 rounded-lg shadow-lg border-2 border-black;
     background: repeating-linear-gradient(
       -45deg,
       var(--card-bg),
@@ -61,7 +64,7 @@
   }
 
   .button {
-    @apply px-6 py-3 rounded-lg font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] 
+    @apply px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] 
     hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none 
     transition-all duration-150 hover:translate-x-[2px] hover:translate-y-[2px]
     active:translate-x-[4px] active:translate-y-[4px];
@@ -78,12 +81,11 @@
   }
 
   .skill-tag {
-    @apply px-4 py-2 rounded-lg font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] 
+    @apply px-3 sm:px-4 py-1 sm:py-2 rounded-lg font-bold text-sm sm:text-base border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] 
     hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none 
     transition-all duration-150;
     background-color: var(--yellow);
   }
-
   .skill-tag[data-color="yellow"] {
     background-color: var(--yellow);
   }

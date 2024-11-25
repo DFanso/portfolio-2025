@@ -24,10 +24,10 @@ const staggerContainer = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen p-8 space-y-12 max-w-7xl mx-auto dark:bg-[#1A1A1A] dark:text-white">
+    <div className="min-h-screen p-4 sm:p-8 space-y-8 sm:space-y-12 max-w-7xl mx-auto dark:bg-[#1A1A1A] dark:text-white">
       {/* Hero Section */}
       <motion.header 
-        className="space-y-8"
+        className="space-y-4 sm:space-y-8"
         initial="initial"
         animate="animate"
         variants={staggerContainer}
@@ -37,36 +37,36 @@ export default function Home() {
           variants={fadeInUp}
         >
           Hey, I'm <span className="gradient-text animate-float">Leo Felcianas</span>
-          <br />
+          <br className="hidden sm:block" />
           DevOps & Software Engineer
         </motion.h1>
         <motion.p 
-          className="text-xl font-bold max-w-2xl"
+          className="text-lg sm:text-xl font-bold max-w-2xl"
           variants={fadeInUp}
         >
           Associate DevOps Engineer at Empite | First Class Honours Graduate from University of Plymouth | 
           Specialized in DevOps pipelines and Backend development. Passionate about creating efficient and scalable solutions.
         </motion.p>
         <motion.div 
-          className="flex gap-4"
+          className="flex flex-col sm:flex-row gap-4"
           variants={fadeInUp}
         >
-          <a href="mailto:leogavin123@outlook.com" className="button bg-[var(--green)] text-black hover:scale-105 transition-transform">Get in Touch</a>
-          <a href="tel:+940772067102" className="button neo-brutalism-accent hover:scale-105 transition-transform">Call Me</a>
+          <a href="mailto:leogavin123@outlook.com" className="button bg-[var(--green)] text-black hover:scale-105 transition-transform w-full sm:w-auto text-center">Get in Touch</a>
+          <a href="tel:+940772067102" className="button neo-brutalism-accent hover:scale-105 transition-transform w-full sm:w-auto text-center">Call Me</a>
         </motion.div>
       </motion.header>
 
       {/* Skills Section */}
       <motion.section 
-        className="card space-y-6"
+        className="card space-y-4 sm:space-y-6"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-bold">Top Skills</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold">Top Skills</h2>
         <motion.div 
-          className="flex flex-wrap gap-3"
+          className="flex flex-wrap gap-2 sm:gap-3"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
@@ -209,9 +209,9 @@ export default function Home() {
       </motion.section>
 
       {/* Projects Section */}
-      <section className="space-y-8">
+      <section className="space-y-6 sm:space-y-8">
         <motion.h2 
-          className="text-3xl font-bold"
+          className="text-2xl sm:text-3xl font-bold"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -219,7 +219,7 @@ export default function Home() {
         >
           Featured Projects
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
           {[
             {
               title: "QuickQuest",
