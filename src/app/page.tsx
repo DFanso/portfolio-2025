@@ -77,12 +77,13 @@ export default function Home() {
             { text: "TypeORM", color: "blue" },
             { text: "SQL", color: "purple" },
             { text: "System Architecture", color: "pink" },
-            { text: "Load Testing", color: "accent" },
-            { text: "Infrastructure as Code", color: "yellow" },
-            { text: "Azure DevOps", color: "green" },
-            { text: "MERN Stack", color: "blue" },
-            { text: "Docker", color: "purple" },
-            { text: "AWS", color: "pink" }
+            { text: "Terraform", color: "accent" },
+            { text: "Load Testing", color: "yellow" },
+            { text: "Infrastructure as Code", color: "green" },
+            { text: "Azure DevOps", color: "blue" },
+            { text: "MERN Stack", color: "purple" },
+            { text: "Docker", color: "pink" },
+            { text: "AWS", color: "accent" }
           ].map((skill, index) => (
             <motion.span
               key={skill.text}
