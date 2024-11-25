@@ -119,16 +119,6 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <div className="absolute top-0 right-0 w-32 h-32 -rotate-12 transform opacity-10">
-            <Image
-              src="/empite-logo.png"
-              alt="Empite Logo"
-              width={128}
-              height={128}
-              className="object-contain"
-            />
-          </div>
-          
           <div className="flex justify-between items-start flex-wrap gap-4">
             <div className="space-y-2">
               <motion.h3 
@@ -149,7 +139,7 @@ export default function Home() {
               </motion.p>
             </div>
             <motion.span 
-              className="neo-brutalism px-4 py-2 text-sm font-bold bg-[var(--yellow)] transform hover:rotate-2 transition-transform"
+              className="neo-brutalism px-4 py-2 text-sm font-bold bg-[var(--yellow)] text-black transform hover:rotate-2 transition-transform"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
