@@ -17,15 +17,17 @@ export default function Icon() {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 24,
-          background: '#F0FF90',
+          fontSize: 20,
+          fontWeight: 700,
+          background: 'linear-gradient(45deg, #47FFB2, #47D1FF)',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           borderRadius: '50%',
-          border: '2px solid black',
+          color: '#1A1A1A',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
         }}
       >
         LF
@@ -33,8 +35,6 @@ export default function Icon() {
     ),
     // ImageResponse options
     {
-      // For convenience, we can re-use the exported size metadata
-      // config to also set the ImageResponse's width and height.
       ...size,
     }
   )

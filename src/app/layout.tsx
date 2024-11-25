@@ -8,21 +8,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Leo Felcianas | DevOps Engineer",
   description: "Associate DevOps Engineer @Empite | Software Engineer specializing in infrastructure as code and cloud technologies",
-  icons: {
-    icon: [
-      {
-        url: '/icon?<generated>',
-        type: 'image/png',
-      },
-    ],
-    shortcut: ['/icon?<generated>'],
-    apple: [
-      {
-        url: '/icon?<generated>',
-        type: 'image/png',
-      },
-    ],
-  },
+  icons: [{
+    rel: 'icon',
+    url: '/favicon.svg',
+    type: 'image/svg+xml',
+  }],
 };
 
 export default function RootLayout({
