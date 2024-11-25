@@ -65,7 +65,7 @@ export default function Home() {
             className="heading-style"
             variants={fadeInUp}
           >
-            Hey, I'm <span className="name-animation">Leo Felcianas</span>
+            Hey, I&apos;m <span className="name-animation">Leo Felcianas</span>
             <br className="hidden sm:block" />
             DevOps & Software Engineer
           </motion.h1>
@@ -308,7 +308,7 @@ export default function Home() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold">Let's Connect</h2>
+          <h2 className="text-3xl font-bold">Let&apos;s Connect</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               { 
