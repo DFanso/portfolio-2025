@@ -65,9 +65,9 @@ export default function Home() {
             className="heading-style"
             variants={fadeInUp}
           >
-            Hey, I&apos;m <span className="name-animation">Leo Felcianas</span>
+            Hey, I&apos;m <span className="name-animation">Leo Felcianas </span>
             <br className="hidden sm:block" />
-            DevOps & Software Engineer
+            DevOps + Software Engineer
           </motion.h1>
           <motion.p 
             className="text-lg sm:text-xl font-bold max-w-2xl"
@@ -339,29 +339,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-            {/* <div className="contact-item bg-white dark:bg-[#2A2A2A]">
-              <h3 className="text-lg font-bold mb-2">Email</h3>
-              <p className="flex items-center">
-                <span className="text-xl mr-2">📧</span>
-                leogavin123@outlook.com
-              </p>
-            </div> */}
-
-            {/* <div className="contact-item bg-white dark:bg-[#2A2A2A]">
-              <h3 className="text-lg font-bold mb-2">Phone</h3>
-              <p className="flex items-center">
-                <span className="text-xl mr-2">📱</span>
-                +94 772067102
-              </p>
-            </div> */}
-
-            {/* <div className="contact-item bg-white dark:bg-[#2A2A2A] sm:col-span-2">
-              <h3 className="text-lg font-bold mb-2">Location</h3>
-              <p className="flex items-center">
-                <span className="text-xl mr-2">📍</span>
-                Sri Lanka
-              </p>
-            </div> */}
           </div>
         </motion.section>
       </div>
