@@ -37,7 +37,7 @@ const projects: Project[] = [
 
 export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
   return (
-    <section className="space-y-6 sm:space-y-8">
+    <section id="projects" className="space-y-6 sm:space-y-8">
       <motion.h2 
         className="text-2xl sm:text-3xl font-bold cyber-font"
         initial={{ opacity: 0, x: -20 }}

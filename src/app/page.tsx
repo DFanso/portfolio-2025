@@ -43,28 +43,82 @@ export default function Home() {
           animate="animate"
           variants={staggerContainer}
         >
-          <motion.h1 
-            className="heading-style"
-            variants={fadeInUp}
-          >
-            Hey, I&apos;m <span className="name-animation">Leo Felcianas </span>
-            <br className="hidden sm:block" />
-            DevOps + Software Engineer
-          </motion.h1>
-          <motion.p 
-            className="text-lg sm:text-xl font-bold max-w-2xl"
-            variants={fadeInUp}
-          >
-            Associate DevOps Engineer at Empite | First Class Honours Graduate from University of Plymouth | 
-            Specialized in DevOps pipelines and Backend development. Passionate about creating efficient and scalable solutions.
-          </motion.p>
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4"
-            variants={fadeInUp}
-          >
-            <a href="mailto:leogavin123@outlook.com" className="button bg-[var(--green)] text-black hover:scale-105 transition-transform w-full sm:w-auto text-center">Get in Touch</a>
-            <a href="tel:+940772067102" className="button neo-brutalism-accent hover:scale-105 transition-transform w-full sm:w-auto text-center">Call Me</a>
-          </motion.div>
+          <div className="space-y-6">
+            <motion.div 
+              className="space-y-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <motion.div 
+                className="flex flex-col space-y-2"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold name-animation cyber-font">
+                  Leo Felcianas
+                </h1>
+                <div className="flex flex-col space-y-2">
+                  <motion.span 
+                    className="text-xl sm:text-2xl cyber-font bg-clip-text text-transparent bg-gradient-to-r from-[var(--green)] to-[var(--blue)]"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
+                    Associate DevOps Engineer at Empite
+                  </motion.span>
+                  <motion.span 
+                    className="text-xl sm:text-2xl cyber-font bg-clip-text text-transparent bg-gradient-to-r from-[var(--purple)] to-[var(--pink)]"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  >
+                    BSc (Hons) Software Engineering
+                  </motion.span>
+                  <motion.span 
+                    className="text-xl sm:text-2xl cyber-font text-[var(--accent)]"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  >
+                    @ University of Plymouth
+                  </motion.span>
+                </div>
+              </motion.div>
+              
+              <motion.p 
+                className="text-lg sm:text-xl max-w-2xl cyber-font leading-relaxed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <span className="neo-brutalism-accent px-2 py-1 mr-2 inline-block">DevOps</span>
+                <span className="neo-brutalism-accent px-2 py-1 mr-2 inline-block">Backend</span>
+                specialist crafting efficient and scalable solutions. Transforming complex challenges into elegant architectures.
+              </motion.p>
+            </motion.div>
+            
+            <motion.div
+              className="flex gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+            >
+              <a 
+                href="#contact" 
+                className="neo-brutalism-white px-6 py-3 cyber-font hover:bg-[var(--accent)] hover:text-white transition-colors"
+              >
+                Let&apos;s Connect
+              </a>
+              <a 
+                href="#projects" 
+                className="neo-brutalism px-6 py-3 cyber-font bg-[var(--accent)] text-white hover:bg-black hover:text-white transition-colors"
+              >
+                View Projects
+              </a>
+            </motion.div>
+          </div>
         </motion.header>
 
         <TopSkills onHover={setIsHovered} />

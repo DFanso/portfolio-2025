@@ -107,6 +107,20 @@
     box-shadow: 7px 7px 0px #000;
   }
 
+  .neo-brutalism-white {
+    font-family: 'Cyber', 'CyberRust', sans-serif;
+    border: 3px solid #000;
+    background: white;
+    color: black;
+    box-shadow: 5px 5px 0px #000;
+    transition: all 0.2s ease;
+  }
+
+  .neo-brutalism-white:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px #000;
+  }
+
   .heading-style {
     @apply text-4xl sm:text-5xl md:text-6xl font-bold;
     font-family: 'Cyber', 'CyberRust', sans-serif;
@@ -375,6 +389,12 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
 * {
+  box-sizing: border-box;
   scroll-behavior: smooth;
 }

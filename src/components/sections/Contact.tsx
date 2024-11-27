@@ -27,6 +27,7 @@ const socialLinks: SocialLink[] = [
 export default function Contact() {
   return (
     <motion.section 
+      id="contact"
       className="card space-y-6"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
