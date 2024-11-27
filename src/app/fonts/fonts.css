@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Cyber';
+  src: url('https://assets.codepen.io/605876/Blender-Pro-Bold.otf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CyberRust';
+  src: url('https://raw.githubusercontent.com/n-ce/CyberRust/main/CyberRust.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.cyber-font {
+  font-family: 'Cyber', 'CyberRust', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}

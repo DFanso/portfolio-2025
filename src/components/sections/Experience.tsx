@@ -42,7 +42,7 @@ export default function Experience() {
       variants={staggerContainer}
     >
       <motion.h2 
-        className="text-3xl font-bold"
+        className="text-3xl font-bold cyber-font"
         variants={fadeInUp}
       >
         Experience
@@ -57,7 +57,7 @@ export default function Experience() {
         <div className="flex justify-between items-start flex-wrap gap-4">
           <div className="space-y-2">
             <motion.h3 
-              className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent)] to-[var(--purple)]"
+              className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent)] to-[var(--purple)] cyber-font"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -65,7 +65,7 @@ export default function Experience() {
               Empite
             </motion.h3>
             <motion.p 
-              className="text-xl font-bold text-[var(--accent)]"
+              className="text-xl font-bold text-[var(--accent)] cyber-font"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -74,7 +74,7 @@ export default function Experience() {
             </motion.p>
           </div>
           <motion.span 
-            className="neo-brutalism px-4 py-2 text-sm font-bold bg-[var(--yellow)] text-black transform hover:rotate-2 transition-transform"
+            className="neo-brutalism px-4 py-2 text-sm font-bold bg-[var(--yellow)] text-black transform hover:rotate-2 transition-transform cyber-font"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -89,14 +89,14 @@ export default function Experience() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          <p className="text-lg">
+          <p className="text-lg cyber-font">
             As an Associate DevOps Engineer at Empite, I specialize in:
           </p>
           <ul className="space-y-3 list-none">
             {experienceItems.map((item, index) => (
               <motion.li 
                 key={index}
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 cyber-font"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.6 + (index * 0.1) }}
@@ -117,10 +117,10 @@ export default function Experience() {
           {technologies.map((tech, index) => (
             <span 
               key={tech}
-              className={`px-3 py-1 text-sm font-bold neo-brutalism
+              className={`px-3 py-1 text-sm font-bold neo-brutalism skill-tag text-black cyber-font
                 ${index % 3 === 0 ? 'bg-[var(--yellow)]' : 
                   index % 3 === 1 ? 'bg-[var(--green)]' : 'bg-[var(--blue)]'}
-                text-black`}
+                `}
             >
               {tech}
             </span>

@@ -33,7 +33,7 @@ export default function Contact() {
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-3xl font-bold">Let&apos;s Connect</h2>
+      <h2 className="text-3xl font-bold cyber-font">Let&apos;s Connect</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {socialLinks.map((link) => (
           <a
@@ -42,7 +42,7 @@ export default function Contact() {
             target="_blank"
             rel="noopener noreferrer"
             data-color={link.color}
-            className="button text-black hover-target shine flex items-center justify-center gap-3"
+            className="button text-black hover-target shine flex items-center justify-center gap-3 cyber-font"
           >
             {link.icon}
             {link.text}

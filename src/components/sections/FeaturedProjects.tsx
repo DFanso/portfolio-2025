@@ -39,7 +39,7 @@ export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
   return (
     <section className="space-y-6 sm:space-y-8">
       <motion.h2 
-        className="text-2xl sm:text-3xl font-bold"
+        className="text-2xl sm:text-3xl font-bold cyber-font"
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -59,14 +59,14 @@ export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
             onMouseEnter={() => onHover(true)}
             onMouseLeave={() => onHover(false)}
           >
-            <h3 className="text-2xl font-bold">{project.title}</h3>
+            <h3 className="text-xl font-bold mb-2 cyber-font">{project.title}</h3>
             <p>{project.description}</p>
             <div className="flex flex-wrap gap-2">
               {project.tech.map(tech => (
                 <span 
                   key={tech.name}
                   data-color={tech.color}
-                  className="skill-tag text-black text-sm"
+                  className="skill-tag cyber-font text-black"
                 >
                   {tech.name}
                 </span>
