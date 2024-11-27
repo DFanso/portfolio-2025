@@ -6,6 +6,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import CustomCursor from "@/components/animations/CustomCursor";
 import TopSkills from "@/components/sections/TopSkills";
 import Experience from "@/components/sections/Experience";
+import FeaturedProjects from "@/components/sections/FeaturedProjects";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -67,66 +68,7 @@ export default function Home() {
 
         <TopSkills onHover={setIsHovered} />
         <Experience />
-
-        {/* Projects Section */}
-        <section className="space-y-6 sm:space-y-8">
-          <motion.h2 
-            className="text-2xl sm:text-3xl font-bold"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Featured Projects
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-            {[
-              {
-                title: "QuickQuest",
-                description: "A platform connecting customers with laborers using geospatial queries and real-time chat.",
-                tech: [
-                  { name: "Nest.js", color: "yellow" },
-                  { name: "Next.js", color: "green" },
-                  { name: "MongoDB", color: "blue" }
-                ]
-              },
-              {
-                title: "CineMagic Cinema",
-                description: "Online ticket booking system with client, admin, and server components. Integrated with PayPal and OMDB API.",
-                tech: [
-                  { name: "React.js", color: "purple" },
-                  { name: "Nest.js", color: "pink" },
-                  { name: "MongoDB", color: "accent" }
-                ]
-              }
-            ].map((project, index) => (
-              <motion.div 
-                key={project.title}
-                className="card space-y-4 hover-target"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <h3 className="text-2xl font-bold">{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map(tech => (
-                    <span 
-                      key={tech.name}
-                      data-color={tech.color}
-                      className="skill-tag text-black text-sm"
-                    >
-                      {tech.name}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+        <FeaturedProjects onHover={setIsHovered} />
 
         {/* Contact Section */}
         <motion.section 
