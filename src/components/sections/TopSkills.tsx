@@ -17,17 +17,17 @@ interface TopSkillsProps {
 export default function TopSkills({ onHover }: TopSkillsProps) {
   const skills = [
     { text: "Backend Development", color: "yellow" },
-    { text: "NestJS", color: "green" },
-    { text: "TypeORM", color: "blue" },
-    { text: "SQL", color: "purple" },
+    { text: "NestJS", color: "nestjs" },
+    { text: "TypeScript", color: "typescript" },
+    { text: "SQL", color: "sql" },
     { text: "System Architecture", color: "pink" },
-    { text: "Terraform", color: "accent" },
-    { text: "Load Testing", color: "yellow" },
+    { text: "Terraform", color: "terraform" },
+    { text: "Load Testing", color: "purple" },
     { text: "Infrastructure as Code", color: "green" },
-    { text: "Azure DevOps", color: "blue" },
-    { text: "MERN Stack", color: "purple" },
-    { text: "Docker", color: "pink" },
-    { text: "AWS", color: "accent" }
+    { text: "Azure DevOps", color: "azure" },
+    { text: "Node.js", color: "nodejs" },
+    { text: "Docker", color: "docker" },
+    { text: "AWS", color: "aws" }
   ];
 
   return (

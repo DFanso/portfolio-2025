@@ -31,7 +31,17 @@ const technologies = [
   "Kubernetes",
   "Terraform",
   "CI/CD"
-];
+].map(tech => {
+  const colorMap: { [key: string]: string } = {
+    "Azure DevOps": "azure",
+    "AWS": "aws",
+    "Docker": "docker",
+    "Kubernetes": "kubernetes",
+    "Terraform": "terraform",
+    "CI/CD": "accent"
+  };
+  return { name: tech, color: colorMap[tech] };
+});
 
 export default function Experience() {
   return (
@@ -114,15 +124,13 @@ export default function Experience() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 1.2 }}
         >
-          {technologies.map((tech, index) => (
+          {technologies.map((tech) => (
             <span 
-              key={tech}
-              className={`px-3 py-1 text-sm font-bold neo-brutalism skill-tag text-black cyber-font
-                ${index % 3 === 0 ? 'bg-[var(--yellow)]' : 
-                  index % 3 === 1 ? 'bg-[var(--green)]' : 'bg-[var(--blue)]'}
-                `}
+              key={tech.name}
+              data-color={tech.color}
+              className="skill-tag cyber-font text-black"
             >
-              {tech}
+              {tech.name}
             </span>
           ))}
         </motion.div>

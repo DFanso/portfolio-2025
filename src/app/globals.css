@@ -13,6 +13,20 @@
   --yellow: #fff700;
   --accent: #fe5f55;
   --card-bg: #ffffff;
+  
+  /* Technology Brand Colors */
+  --nestjs: #E0234E;
+  --nextjs: #000000;
+  --mongodb: #47A248;
+  --reactjs: #61DAFB;
+  --typescript: #3178C6;
+  --nodejs: #339933;
+  --aws: #FF9900;
+  --azure: #0078D4;
+  --docker: #2496ED;
+  --kubernetes: #326CE5;
+  --terraform: #7B42BC;
+  --sql: #4479A1;
 }
 
 .dark {
@@ -188,6 +202,53 @@
   }
   .skill-tag[data-color="accent"] {
     background-color: var(--accent);
+  }
+  /* Technology Brand Colors */
+  .skill-tag[data-color="nestjs"] {
+    background-color: var(--nestjs);
+    color: white;
+  }
+  .skill-tag[data-color="nextjs"] {
+    background-color: var(--nextjs);
+    color: white;
+  }
+  .skill-tag[data-color="mongodb"] {
+    background-color: var(--mongodb);
+    color: white;
+  }
+  .skill-tag[data-color="reactjs"] {
+    background-color: var(--reactjs);
+  }
+  .skill-tag[data-color="typescript"] {
+    background-color: var(--typescript);
+    color: white;
+  }
+  .skill-tag[data-color="nodejs"] {
+    background-color: var(--nodejs);
+    color: white;
+  }
+  .skill-tag[data-color="aws"] {
+    background-color: var(--aws);
+  }
+  .skill-tag[data-color="azure"] {
+    background-color: var(--azure);
+    color: white;
+  }
+  .skill-tag[data-color="docker"] {
+    background-color: var(--docker);
+    color: white;
+  }
+  .skill-tag[data-color="kubernetes"] {
+    background-color: var(--kubernetes);
+    color: white;
+  }
+  .skill-tag[data-color="terraform"] {
+    background-color: var(--terraform);
+    color: white;
+  }
+  .skill-tag[data-color="sql"] {
+    background-color: var(--sql);
+    color: white;
   }
 
   .gradient-border {

@@ -19,18 +19,18 @@ const projects: Project[] = [
     title: "QuickQuest",
     description: "A platform connecting customers with laborers using geospatial queries and real-time chat.",
     tech: [
-      { name: "Nest.js", color: "yellow" },
-      { name: "Next.js", color: "green" },
-      { name: "MongoDB", color: "blue" }
+      { name: "Nest.js", color: "nestjs" },
+      { name: "Next.js", color: "nextjs" },
+      { name: "MongoDB", color: "mongodb" }
     ]
   },
   {
     title: "CineMagic Cinema",
     description: "Online ticket booking system with client, admin, and server components. Integrated with PayPal and OMDB API.",
     tech: [
-      { name: "React.js", color: "purple" },
-      { name: "Nest.js", color: "pink" },
-      { name: "MongoDB", color: "accent" }
+      { name: "React.js", color: "reactjs" },
+      { name: "Nest.js", color: "nestjs" },
+      { name: "MongoDB", color: "mongodb" }
     ]
   }
 ];
