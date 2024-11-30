@@ -1,39 +1,11 @@
 'use client';
 import { motion } from "framer-motion";
-
-interface Project {
-  title: string;
-  description: string;
-  tech: {
-    name: string;
-    color: string;
-  }[];
-}
+import { FaGithub } from 'react-icons/fa';
+import { projects } from '@/data/projects';
 
 interface FeaturedProjectsProps {
   onHover: (isHovered: boolean) => void;
 }
-
-const projects: Project[] = [
-  {
-    title: "QuickQuest",
-    description: "A platform connecting customers with laborers using geospatial queries and real-time chat.",
-    tech: [
-      { name: "Nest.js", color: "nestjs" },
-      { name: "Next.js", color: "nextjs" },
-      { name: "MongoDB", color: "mongodb" }
-    ]
-  },
-  {
-    title: "CineMagic Cinema",
-    description: "Online ticket booking system with client, admin, and server components. Integrated with PayPal and OMDB API.",
-    tech: [
-      { name: "React.js", color: "reactjs" },
-      { name: "Nest.js", color: "nestjs" },
-      { name: "MongoDB", color: "mongodb" }
-    ]
-  }
-];
 
 export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
   return (
@@ -51,7 +23,7 @@ export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
         {projects.map((project, index) => (
           <motion.div 
             key={project.title}
-            className="card space-y-4 hover-target"
+            className="card space-y-4 hover-target relative"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -59,9 +31,28 @@ export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
             onMouseEnter={() => onHover(true)}
             onMouseLeave={() => onHover(false)}
           >
-            <h3 className="text-xl font-bold mb-2 cyber-font">{project.title}</h3>
-            <p>{project.description}</p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex justify-between items-start relative z-10">
+              <h3 className="text-xl font-bold mb-2 cyber-font">{project.title}</h3>
+              {project.repoUrl && (
+                <div 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const newWindow = window.open();
+                    if (newWindow) {
+                      newWindow.location = project.repoUrl!;
+                    }
+                  }}
+                  className="block p-2 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors relative z-20 pointer-events-auto cursor-pointer"
+                  role="link"
+                  aria-label={`Open ${project.title} repository in new tab`}
+                >
+                  <FaGithub className="text-2xl hover:text-[var(--accent)] transition-colors" />
+                </div>
+              )}
+            </div>
+            <p className="relative z-10">{project.description}</p>
+            <div className="flex flex-wrap gap-2 relative z-10">
               {project.tech.map(tech => (
                 <span 
                   key={tech.name}
