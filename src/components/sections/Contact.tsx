@@ -1,12 +1,12 @@
 'use client';
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaDiscord, FaInstagram } from 'react-icons/fa';
 
 interface SocialLink {
   text: string;
   href: string;
   color: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 }
 
 const socialLinks: SocialLink[] = [
@@ -21,6 +21,18 @@ const socialLinks: SocialLink[] = [
     href: "https://github.com/DFanso", 
     color: "purple",
     icon: <FaGithub className="text-2xl" />
+  },
+  { 
+    text: "Discord", 
+    href: "https://discord.gg/DcFFdcjfAf", 
+    color: "discord",
+    icon: <FaDiscord className="text-2xl" />
+  },
+  { 
+    text: "Instagram", 
+    href: "https://instagram.com/dfansoo", 
+    color: "instagram",
+    icon: <FaInstagram className="text-2xl" />
   }
 ];
 
