@@ -2,12 +2,13 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projects } from '@/data/projects';
+import { Dispatch, SetStateAction } from 'react';
 
 interface FeaturedProjectsProps {
-  onHover: (isHovered: boolean) => void;
+  setIsHovered: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
+export default function FeaturedProjects({ setIsHovered }: FeaturedProjectsProps) {
   return (
     <section id="projects" className="space-y-6 sm:space-y-8">
       <motion.h2 
@@ -28,8 +29,8 @@ export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            onMouseEnter={() => onHover(true)}
-            onMouseLeave={() => onHover(false)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             <div className="flex justify-between items-start relative z-10">
               <h3 className="text-xl font-bold mb-2 cyber-font">{project.title}</h3>
@@ -40,8 +41,8 @@ export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block p-2 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors relative z-20 pointer-events-auto"
-                    onMouseEnter={() => onHover(true)}
-                    onMouseLeave={() => onHover(false)}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
                     title="View Live Demo"
                   >
                     <FaExternalLinkAlt className="text-lg hover:text-[var(--accent)] transition-colors" />
@@ -53,8 +54,8 @@ export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block p-2 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors relative z-20 pointer-events-auto"
-                    onMouseEnter={() => onHover(true)}
-                    onMouseLeave={() => onHover(false)}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
                     title="View Source Code"
                   >
                     <FaGithub className="text-2xl hover:text-[var(--accent)] transition-colors" />

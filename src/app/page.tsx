@@ -8,6 +8,7 @@ import TopSkills from "@/components/sections/TopSkills";
 import Experience from "@/components/sections/Experience";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import Contact from "@/components/sections/Contact";
+import Footer from "@/components/Footer";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -124,16 +125,9 @@ export default function Home() {
 
         <TopSkills onHover={setIsHovered} />
         <Experience />
-        <FeaturedProjects onHover={setIsHovered} />
-        <Contact />
-        <div className="flex items-center gap-4">
-            <a
-              href="/dashboard"
-              className="hover-target text-sm text-[var(--green)] hover:underline"
-            >
-              Dashboard
-            </a>
-          </div>
+        <FeaturedProjects setIsHovered={setIsHovered} />
+        <Contact setIsHovered={setIsHovered} />
+        <Footer />
       </div>
     </>
   );

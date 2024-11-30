@@ -1,12 +1,17 @@
 'use client';
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaDiscord, FaInstagram } from 'react-icons/fa';
+import { Dispatch, SetStateAction } from 'react';
 
 interface SocialLink {
   text: string;
   href: string;
   color: string;
   icon: React.ReactNode;
+}
+
+interface ContactProps {
+  setIsHovered: Dispatch<SetStateAction<boolean>>;
 }
 
 const socialLinks: SocialLink[] = [
@@ -36,7 +41,7 @@ const socialLinks: SocialLink[] = [
   }
 ];
 
-export default function Contact() {
+export default function Contact({ setIsHovered }: ContactProps) {
   return (
     <motion.section 
       id="contact"
@@ -56,6 +61,8 @@ export default function Contact() {
             rel="noopener noreferrer"
             data-color={link.color}
             className="button text-black hover-target shine flex items-center justify-center gap-3 cyber-font"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
             {link.icon}
             {link.text}
