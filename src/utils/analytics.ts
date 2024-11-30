@@ -4,11 +4,12 @@ const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 interface CachedCountry {
   country: string;
+  city: string;
   timestamp: number;
 }
 
-// Function to get visitor's country using multiple IP geolocation APIs
-async function getVisitorCountry(): Promise<string> {
+// Function to get visitor's country and city using multiple IP geolocation APIs
+async function getVisitorCountry(): Promise<{ country: string; city: string }> {
   try {
     // Check cache first
     const cachedData = localStorage.getItem(COUNTRY_CACHE_KEY);
@@ -17,8 +18,8 @@ async function getVisitorCountry(): Promise<string> {
         const parsed: CachedCountry = JSON.parse(cachedData);
         const now = Date.now();
         if (now - parsed.timestamp < CACHE_DURATION && parsed.country !== 'Unknown' && parsed.country !== 'test') {
-          console.log('Using cached country:', parsed.country);
-          return parsed.country;
+          console.log('Using cached country and city:', parsed.country, parsed.city);
+          return { country: parsed.country, city: parsed.city };
         }
       } catch (cacheError) {
         console.warn('Failed to parse cached country data:', cacheError);
@@ -28,7 +29,7 @@ async function getVisitorCountry(): Promise<string> {
 
     // Try ipapi.co first
     try {
-      console.log('Attempting to get country from ipapi.co...');
+      console.log('Attempting to get country and city from ipapi.co...');
       const response = await fetch('https://ipapi.co/json/', {
         headers: {
           'Accept': 'application/json',
@@ -38,18 +39,20 @@ async function getVisitorCountry(): Promise<string> {
       
       if (response.ok) {
         const data = await response.json();
-        if (data.country_code && typeof data.country_code === 'string' && data.country_code.length === 2) {
+        if (data.country_code && typeof data.country_code === 'string' && data.country_code.length === 2 && data.city) {
           const country = data.country_code.toUpperCase();
+          const city = data.city;
           // Cache the result
           localStorage.setItem(COUNTRY_CACHE_KEY, JSON.stringify({
             country: country,
+            city: city,
             timestamp: Date.now()
           }));
-          console.log('Country detected from ipapi.co:', country);
-          return country;
+          console.log('Country and city detected from ipapi.co:', country, city);
+          return { country, city };
         } else {
-          console.warn('Invalid country code from ipapi.co:', data);
-          throw new Error('Invalid country code from ipapi.co');
+          console.warn('Invalid country code or city from ipapi.co:', data);
+          throw new Error('Invalid country code or city from ipapi.co');
         }
       } else {
         console.warn('ipapi.co response not ok:', response.status);
@@ -60,7 +63,7 @@ async function getVisitorCountry(): Promise<string> {
       
       // Fallback to ip-api.com with HTTPS
       try {
-        console.log('Attempting to get country from ip-api.com...');
+        console.log('Attempting to get country and city from ip-api.com...');
         const response = await fetch('https://ip-api.com/json/', {
           headers: {
             'Accept': 'application/json',
@@ -70,18 +73,20 @@ async function getVisitorCountry(): Promise<string> {
         
         if (response.ok) {
           const data = await response.json();
-          if (data.countryCode && typeof data.countryCode === 'string' && data.countryCode.length === 2) {
+          if (data.countryCode && typeof data.countryCode === 'string' && data.countryCode.length === 2 && data.city) {
             const country = data.countryCode.toUpperCase();
+            const city = data.city;
             // Cache the result
             localStorage.setItem(COUNTRY_CACHE_KEY, JSON.stringify({
               country: country,
+              city: city,
               timestamp: Date.now()
             }));
-            console.log('Country detected from ip-api.com:', country);
-            return country;
+            console.log('Country and city detected from ip-api.com:', country, city);
+            return { country, city };
           } else {
-            console.warn('Invalid country code from ip-api.com:', data);
-            throw new Error('Invalid country code from ip-api.com');
+            console.warn('Invalid country code or city from ip-api.com:', data);
+            throw new Error('Invalid country code or city from ip-api.com');
           }
         } else {
           console.warn('ip-api.com response not ok:', response.status);
@@ -93,21 +98,21 @@ async function getVisitorCountry(): Promise<string> {
       }
     }
   } catch (error) {
-    console.error('Failed to detect country:', error);
-    // Return cached country if available, even if expired
+    console.error('Failed to detect country and city:', error);
+    // Return cached country and city if available, even if expired
     try {
       const cachedData = localStorage.getItem(COUNTRY_CACHE_KEY);
       if (cachedData) {
         const parsed: CachedCountry = JSON.parse(cachedData);
         if (parsed.country !== 'Unknown' && parsed.country !== 'test') {
-          console.log('Using expired cached country as fallback:', parsed.country);
-          return parsed.country;
+          console.log('Using expired cached country and city as fallback:', parsed.country, parsed.city);
+          return { country: parsed.country, city: parsed.city };
         }
       }
     } catch (cacheError) {
       console.error('Failed to read country cache:', cacheError);
     }
-    return 'Unknown';
+    return { country: 'Unknown', city: 'Unknown' };
   }
 }
 
@@ -121,8 +126,8 @@ export async function trackPageView(page: string) {
       return;
     }
 
-    // Get country and record the visit
-    const country = await getVisitorCountry();
+    // Get country and city and record the visit
+    const { country, city } = await getVisitorCountry();
     
     // Validate country code before sending
     if (!country || country === 'test' || country === 'Unknown' || country.length !== 2) {
@@ -130,7 +135,7 @@ export async function trackPageView(page: string) {
       return;
     }
     
-    console.log('Tracking page view with country:', country);
+    console.log('Tracking page view with country and city:', country, city);
     
     const response = await fetch('/api/analytics', {
       method: 'POST',
@@ -140,6 +145,7 @@ export async function trackPageView(page: string) {
       body: JSON.stringify({
         page,
         country,
+        city,
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent
       }),
@@ -156,6 +162,32 @@ export async function trackPageView(page: string) {
     console.log('Page view tracked successfully:', data);
   } catch (error) {
     console.error('Failed to track page view:', error);
+  }
+}
+
+// Function to track a visit
+export async function trackVisit() {
+  try {
+    const { country, city } = await getVisitorCountry();
+    
+    const response = await fetch('/api/analytics', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        country,
+        city,
+        page: window.location.pathname,
+        userAgent: window.navigator.userAgent,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to track visit');
+    }
+  } catch (error) {
+    console.error('Failed to track visit:', error);
   }
 }
 

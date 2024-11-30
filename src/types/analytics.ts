@@ -5,6 +5,7 @@ export interface AnalyticsData {
   recentVisits: Array<{
     timestamp: string;
     country: string;
+    city: string;
     page: string;
     userAgent: string;
   }>;

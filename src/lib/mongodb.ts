@@ -89,6 +89,7 @@ const analyticsSchema = new mongoose.Schema<AnalyticsData>({
         message: 'Country code must be a valid 2-letter code'
       }
     },
+    city: { type: String, required: true },
     page: { type: String, required: true },
     userAgent: { type: String, required: true }
   }]

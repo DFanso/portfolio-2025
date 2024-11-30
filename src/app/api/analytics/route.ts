@@ -108,6 +108,7 @@ export async function POST(request: Request) {
     const newVisit = {
       timestamp: new Date().toISOString(),
       country: country,
+      city: visit.city || 'Unknown',
       page: visit.page || '/',
       userAgent: visit.userAgent || 'Unknown'
     };

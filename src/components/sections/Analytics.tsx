@@ -48,29 +48,61 @@ const BarChart = ({ data, title }: { data: { label: string; value: number }[]; t
   </div>
 );
 
-const RecentVisits = ({ visits }: { visits: AnalyticsData['recentVisits'] }) => (
-  <div className="bg-zinc-900 p-6 rounded-lg border border-[var(--green)]">
-    <h3 className="text-zinc-400 text-sm mb-4">Recent Visits</h3>
-    <div className="space-y-4">
-      {visits.map((visit, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: index * 0.05 }}
-          className="flex justify-between text-sm border-b border-zinc-800 pb-2"
-        >
-          <span className="text-zinc-400">
-            {new Date(visit.timestamp).toLocaleString()}
-          </span>
-          <span className="text-[var(--green)]">
-            {visit.country}
-          </span>
-        </motion.div>
-      ))}
+const RecentVisits = ({ visits }: { visits: AnalyticsData['recentVisits'] }) => {
+  const formatUserAgent = (ua: string) => {
+    try {
+      // Extract browser and OS info
+      const browserMatch = ua.match(/(chrome|safari|firefox|edge|opera|ie)\/?\s*(\d+(\.\d+)*)/i);
+      const osMatch = ua.match(/(mac|windows|linux|android|ios)[^\s)]*\s*/i);
+      const deviceMatch = ua.match(/(mobile|tablet|desktop)/i);
+      
+      const browser = browserMatch?.[1] ? 
+        browserMatch[1].charAt(0).toUpperCase() + browserMatch[1].slice(1) : 
+        'Unknown';
+      
+      const os = osMatch?.[1] ? 
+        osMatch[1].charAt(0).toUpperCase() + osMatch[1].slice(1) : 
+        'Unknown';
+      
+      const device = deviceMatch?.[1] ? 
+        deviceMatch[1].charAt(0).toUpperCase() + deviceMatch[1].slice(1) : 
+        'Desktop';
+
+      return [browser, os, device].filter(Boolean).join(' • ');
+    } catch {
+      return 'Unknown Device';
+    }
+  };
+
+  return (
+    <div className="bg-zinc-900 p-6 rounded-lg border border-[var(--green)]">
+      <h3 className="text-zinc-400 text-sm mb-4">Recent Visits</h3>
+      <div className="space-y-4">
+        {visits.map((visit, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.05 }}
+            className="flex flex-col space-y-2 border-b border-zinc-800 pb-4"
+          >
+            <div className="flex justify-between items-center">
+              <span className="text-zinc-400 text-sm">
+                {new Date(visit.timestamp).toLocaleString()}
+              </span>
+              <span className="text-[var(--green)] text-sm font-medium">
+                {visit.country} • {visit.city}
+              </span>
+            </div>
+            <div className="text-zinc-500 text-sm">
+              {formatUserAgent(visit.userAgent)}
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export function Analytics() {
   const [data, setData] = useState<AnalyticsData | null>(null);
