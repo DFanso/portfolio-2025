@@ -25,12 +25,31 @@ export default function CustomCursor({ isHovered }: CustomCursorProps) {
   }, [cursorX, cursorY]);
 
   return (
-    <motion.div
-      className={`custom-cursor ${isHovered ? 'hover' : ''}`}
-      style={{
-        left: cursorXSpring,
-        top: cursorYSpring,
-      }}
-    />
+    <>
+      <motion.div
+        className="cursor-outer"
+        style={{
+          left: cursorXSpring,
+          top: cursorYSpring,
+          scale: isHovered ? 1.5 : 1,
+        }}
+      />
+      <motion.div
+        className="cursor-inner"
+        style={{
+          left: cursorXSpring,
+          top: cursorYSpring,
+          scale: isHovered ? 0.5 : 1,
+        }}
+      />
+      <motion.div
+        className="cursor-core"
+        style={{
+          left: cursorXSpring,
+          top: cursorYSpring,
+          scale: isHovered ? 1.2 : 1,
+        }}
+      />
+    </>
   );
 }

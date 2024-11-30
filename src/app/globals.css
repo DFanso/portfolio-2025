@@ -90,15 +90,38 @@
     }
   }
 
-  /* Custom Cursor */
-  .custom-cursor {
-    @apply fixed w-4 h-4 rounded-full pointer-events-none z-50 transition-transform duration-150 ease-out mix-blend-difference;
-    background: white;
+  /* Advanced Cursor */
+  .cursor-outer {
+    @apply fixed pointer-events-none z-[48];
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 255, 159, 0.1);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
     transform: translate(-50%, -50%);
+    transition: all 0.2s ease-out;
   }
 
-  .custom-cursor.hover {
-    @apply scale-150;
+  .cursor-inner {
+    @apply fixed pointer-events-none z-[49];
+    width: 12px;
+    height: 12px;
+    background: var(--green);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease-out;
+    box-shadow: 0 0 10px var(--green);
+  }
+
+  .cursor-core {
+    @apply fixed pointer-events-none z-[50];
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease-out;
+    mix-blend-mode: difference;
   }
 
   /* Hover Effects */
