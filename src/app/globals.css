@@ -124,6 +124,16 @@
     mix-blend-mode: difference;
   }
 
+  /* Hide system cursor */
+  * {
+    cursor: none !important;
+  }
+
+  /* Ensure cursor stays hidden on interactive elements */
+  button, a, input, textarea, select {
+    cursor: none !important;
+  }
+
   /* Hover Effects */
   .hover-target {
     @apply relative overflow-hidden;
