@@ -58,8 +58,6 @@ export const projects: Project[] = [
       { name: "PayPal", color: "paypal" },
       { name: "Swagger", color: "swagger" },
       { name: "Jest", color: "jest" },
-      { name: "OMDB", color: "omdb" },
-      { name: "Docker", color: "docker" }
     ],
     repoUrl: "https://github.com/DFanso/cine-magic-cinema"
   },

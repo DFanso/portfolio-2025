@@ -27,6 +27,7 @@
   --kubernetes: #326CE5;
   --terraform: #7B42BC;
   --sql: #4479A1;
+  --mysql: #4479A1;
   --python: #3776AB;
   --tailwindcss: #06B6D4;
   --vercel: #000000;
@@ -270,6 +271,10 @@
     background-color: var(--sql);
     color: white;
   }
+  .skill-tag[data-color="mysql"] {
+    background-color: var(--mysql);
+    color: white;
+  }
   .skill-tag[data-color="python"] {
     background-color: var(--python);
     color: white;
@@ -324,7 +329,7 @@
   }
   .skill-tag[data-color="swagger"] {
     background-color: var(--swagger);
-    color: white;
+    color: black;
   }
   .skill-tag[data-color="jest"] {
     background-color: var(--jest);
