@@ -27,6 +27,26 @@
   --kubernetes: #326CE5;
   --terraform: #7B42BC;
   --sql: #4479A1;
+  --python: #3776AB;
+  --tailwindcss: #06B6D4;
+  --vercel: #000000;
+  --paypal: #00457C;
+  --sse: #F7DF1E;
+  --ml: #FF6B6B;
+  --ubuntu: #E95420;
+  --brevo: #0091FF;
+  --redux: #764ABC;
+  --express: #000000;
+  --mongoose: #880000;
+  --jwt: #00F2E6;
+  --websocket: #4353FF;
+  --swagger: #85EA2D;
+  --jest: #C21325;
+  --omdb: #F5C518;
+  --github: #181717;
+  --cinemagic: #FF69B4;
+  --stripe: #635BFF;
+  --firebase: #FFCA28;
 }
 
 .dark {
@@ -249,6 +269,86 @@
   .skill-tag[data-color="sql"] {
     background-color: var(--sql);
     color: white;
+  }
+  .skill-tag[data-color="python"] {
+    background-color: var(--python);
+    color: white;
+  }
+  .skill-tag[data-color="tailwindcss"] {
+    background-color: var(--tailwindcss);
+    color: white;
+  }
+  .skill-tag[data-color="vercel"] {
+    background-color: var(--vercel);
+    color: white;
+  }
+  .skill-tag[data-color="paypal"] {
+    background-color: var(--paypal);
+    color: white;
+  }
+  .skill-tag[data-color="sse"] {
+    background-color: var(--sse);
+    color: white;
+  }
+  .skill-tag[data-color="ml"] {
+    background-color: var(--ml);
+    color: white;
+  }
+  .skill-tag[data-color="ubuntu"] {
+    background-color: var(--ubuntu);
+    color: white;
+  }
+  .skill-tag[data-color="brevo"] {
+    background-color: var(--brevo);
+    color: white;
+  }
+  .skill-tag[data-color="redux"] {
+    background-color: var(--redux);
+    color: white;
+  }
+  .skill-tag[data-color="express"] {
+    background-color: var(--express);
+    color: white;
+  }
+  .skill-tag[data-color="mongoose"] {
+    background-color: var(--mongoose);
+    color: white;
+  }
+  .skill-tag[data-color="jwt"] {
+    background-color: var(--jwt);
+    color: white;
+  }
+  .skill-tag[data-color="websocket"] {
+    background-color: var(--websocket);
+    color: white;
+  }
+  .skill-tag[data-color="swagger"] {
+    background-color: var(--swagger);
+    color: white;
+  }
+  .skill-tag[data-color="jest"] {
+    background-color: var(--jest);
+    color: white;
+  }
+  .skill-tag[data-color="omdb"] {
+    background-color: var(--omdb);
+    color: white;
+  }
+  .skill-tag[data-color="github"] {
+    background-color: var(--github);
+    color: white;
+  }
+  .skill-tag[data-color="cinemagic"] {
+    background-color: var(--cinemagic);
+    color: white;
+  }
+  .skill-tag[data-color="stripe"] {
+    background-color: var(--stripe);
+    color: white;
+  }
+  .skill-tag[data-color="firebase"] {
+    background-color: var(--firebase);
+    color: black;
   }
 
   .gradient-border {
