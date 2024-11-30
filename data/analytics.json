@@ -1,0 +1,27 @@
+{
+  "totalVisitors": 2,
+  "dailyVisitors": {
+    "2024-11-30": 2
+  },
+  "pageViews": {
+    "/dashboard": 1,
+    "/": 1
+  },
+  "visitorsByCountry": {
+    "SG": 2
+  },
+  "recentVisits": [
+    {
+      "id": "1732946879643",
+      "timestamp": "2024-11-30T06:07:59.643Z",
+      "page": "/",
+      "country": "SG"
+    },
+    {
+      "id": "1732946844806",
+      "timestamp": "2024-11-30T06:07:24.806Z",
+      "page": "/dashboard",
+      "country": "SG"
+    }
+  ]
+}

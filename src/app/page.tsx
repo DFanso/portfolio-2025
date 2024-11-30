@@ -119,6 +119,14 @@ export default function Home() {
               </a>
             </motion.div>
           </div>
+          <div className="flex items-center gap-4">
+            <a
+              href="/dashboard"
+              className="hover-target text-sm text-[var(--green)] hover:underline"
+            >
+              Dashboard
+            </a>
+          </div>
         </motion.header>
 
         <TopSkills onHover={setIsHovered} />
