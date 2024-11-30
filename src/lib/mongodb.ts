@@ -1,11 +1,14 @@
 import mongoose from 'mongoose';
 import { AnalyticsData } from '@/types/analytics';
 
-const MONGODB_URI = 'mongodb+srv://dfanso:Tqy6PthnyrnVTFVB@cluster0.4ybsw.mongodb.net/portfolio?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable');
 }
+
+// After the check, we can safely assert that MONGODB_URI is a string
+const uri: string = MONGODB_URI;
 
 interface MongooseConnection {
   conn: typeof mongoose | null;
@@ -36,34 +39,16 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
       console.log('Creating new MongoDB connection...');
       const opts = {
         bufferCommands: true,
-        dbName: 'portfolio', // Explicitly set database name
       };
 
-      mongoose.connection.on('connected', () => {
-        console.log('MongoDB connected successfully');
-      });
-
-      mongoose.connection.on('error', (err) => {
-        console.error('MongoDB connection error:', err);
-      });
-
-      mongoose.connection.on('disconnected', () => {
-        console.log('MongoDB disconnected');
-      });
-
-      cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-        console.log('New MongoDB connection created');
-        return mongoose;
-      });
-    } else {
-      console.log('Using existing connection promise');
+      cached.promise = mongoose.connect(uri, opts);
     }
 
     cached.conn = await cached.promise;
+    console.log('Successfully connected to MongoDB');
     return cached.conn;
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error);
-    cached.promise = null;
     throw error;
   }
 }
@@ -88,13 +73,9 @@ const analyticsSchema = new mongoose.Schema<AnalyticsData>({
     page: { type: String, required: true },
     userAgent: { type: String, required: true }
   }]
-}, { 
+}, {
   timestamps: true,
-  strict: false, // Allow dynamic object properties
-  collection: 'analytics' // Explicitly set collection name
+  strict: false
 });
-
-// Data retention - keep records for 90 days by default
-analyticsSchema.index({ createdAt: 1 }, { expireAfterSeconds: 90 * 24 * 60 * 60 });
 
 export const Analytics = mongoose.models.Analytics || mongoose.model<AnalyticsData>('Analytics', analyticsSchema);
