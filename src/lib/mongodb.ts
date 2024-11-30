@@ -57,22 +57,18 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
 const analyticsSchema = new mongoose.Schema<AnalyticsData>({
   totalVisitors: { 
     type: Number, 
-    default: 0,
+    required: true,
     min: 0
   },
   dailyVisitors: { 
     type: Object,
-    default: () => ({}),
-  },
-  pageViews: { 
-    type: Object,
-    default: () => ({}),
+    default: () => ({})
   },
   visitorsByCountry: { 
     type: Object,
     default: () => ({}),
     validate: {
-      validator: function(v: Record<string, number>) {
+      validator(v: Record<string, number>) {
         return Object.entries(v).every(([country, count]) => 
           typeof country === 'string' && 
           country.length === 2 && 
@@ -89,9 +85,7 @@ const analyticsSchema = new mongoose.Schema<AnalyticsData>({
       type: String, 
       required: true,
       validate: {
-        validator: function(v: string) {
-          return v.length === 2 && v !== 'UN' && v !== 'TE';
-        },
+        validator: (v: string) => v.length === 2,
         message: 'Country code must be a valid 2-letter code'
       }
     },

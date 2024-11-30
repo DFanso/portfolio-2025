@@ -18,7 +18,6 @@ export async function GET() {
     const defaultData: AnalyticsData = {
       totalVisitors: 0,
       dailyVisitors: {},
-      pageViews: {},
       visitorsByCountry: {},
       recentVisits: []
     };
@@ -26,7 +25,6 @@ export async function GET() {
     const data: AnalyticsData = rawData ? {
       totalVisitors: (rawData as any).totalVisitors ?? defaultData.totalVisitors,
       dailyVisitors: (rawData as any).dailyVisitors ?? defaultData.dailyVisitors,
-      pageViews: (rawData as any).pageViews ?? defaultData.pageViews,
       visitorsByCountry: (rawData as any).visitorsByCountry ?? defaultData.visitorsByCountry,
       recentVisits: (rawData as any).recentVisits ?? defaultData.recentVisits
     } : defaultData;
@@ -80,7 +78,6 @@ export async function POST(request: Request) {
     const defaultData: AnalyticsData = {
       totalVisitors: 0,
       dailyVisitors: {},
-      pageViews: {},
       visitorsByCountry: {},
       recentVisits: []
     };
@@ -103,11 +100,6 @@ export async function POST(request: Request) {
     analytics.dailyVisitors = analytics.dailyVisitors || {};
     analytics.dailyVisitors[today] = (analytics.dailyVisitors[today] || 0) + 1;
 
-    // Update page views
-    const page = visit.page || '/';
-    analytics.pageViews = analytics.pageViews || {};
-    analytics.pageViews[page] = (analytics.pageViews[page] || 0) + 1;
-
     // Update visitors by country
     analytics.visitorsByCountry = analytics.visitorsByCountry || {};
     analytics.visitorsByCountry[country] = (analytics.visitorsByCountry[country] || 0) + 1;
@@ -116,7 +108,7 @@ export async function POST(request: Request) {
     const newVisit = {
       timestamp: new Date().toISOString(),
       country: country,
-      page: page,
+      page: visit.page || '/',
       userAgent: visit.userAgent || 'Unknown'
     };
 

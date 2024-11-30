@@ -64,7 +64,7 @@ const RecentVisits = ({ visits }: { visits: AnalyticsData['recentVisits'] }) => 
             {new Date(visit.timestamp).toLocaleString()}
           </span>
           <span className="text-[var(--green)]">
-            {visit.page} - {visit.country}
+            {visit.country}
           </span>
         </motion.div>
       ))}
@@ -126,15 +126,6 @@ export function Analytics() {
   const today = new Date().toISOString().split('T')[0];
   const dailyVisitors = data.dailyVisitors[today] || 0;
 
-  // Convert page views to array format
-  const pageViewsArray = Object.entries(data.pageViews)
-    .map(([page, views]) => ({
-      label: page,
-      value: views,
-    }))
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 5); // Show top 5
-
   // Convert country data to array format
   const countryArray = Object.entries(data.visitorsByCountry)
     .map(([country, visitors]) => ({
@@ -147,16 +138,14 @@ export function Analytics() {
   return (
     <div className="space-y-8">
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard title="Total Visitors" value={data.totalVisitors} />
         <StatCard title="Daily Visitors" value={dailyVisitors} />
-        <StatCard title="Total Pages" value={Object.keys(data.pageViews).length} />
         <StatCard title="Countries" value={Object.keys(data.visitorsByCountry).length} />
       </div>
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <BarChart data={pageViewsArray} title="Popular Pages" />
+      <div className="grid grid-cols-1 gap-6">
         <BarChart data={countryArray} title="Visitors by Country" />
       </div>
 
