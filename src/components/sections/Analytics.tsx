@@ -3,19 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { getAnalytics } from "@/utils/analytics";
-
-interface VisitorData {
-  totalVisitors: number;
-  dailyVisitors: { [key: string]: number };
-  pageViews: { [key: string]: number };
-  visitorsByCountry: { [key: string]: number };
-  recentVisits: {
-    id: string;
-    timestamp: string;
-    page: string;
-    country: string;
-  }[];
-}
+import { AnalyticsData } from "@/types/analytics";
 
 const StatCard = ({ title, value, suffix = "" }: { title: string; value: number; suffix?: string }) => (
   <motion.div
@@ -51,7 +39,7 @@ const BarChart = ({ data, title }: { data: { label: string; value: number }[]; t
               className="h-full bg-[var(--green)]"
               initial={{ width: 0 }}
               animate={{ width: `${(item.value / Math.max(...data.map(d => d.value))) * 100}%` }}
-              transition={{ duration: 1, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             />
           </motion.div>
         </div>
@@ -60,25 +48,23 @@ const BarChart = ({ data, title }: { data: { label: string; value: number }[]; t
   </div>
 );
 
-const RecentVisits = ({ visits }: { visits: VisitorData["recentVisits"] }) => (
+const RecentVisits = ({ visits }: { visits: AnalyticsData['recentVisits'] }) => (
   <div className="bg-zinc-900 p-6 rounded-lg border border-[var(--green)]">
     <h3 className="text-zinc-400 text-sm mb-4">Recent Visits</h3>
     <div className="space-y-4">
-      {visits.map((visit) => (
+      {visits.map((visit, index) => (
         <motion.div
-          key={visit.id}
+          key={index}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center justify-between border-b border-zinc-800 pb-2"
+          transition={{ delay: index * 0.05 }}
+          className="flex justify-between text-sm border-b border-zinc-800 pb-2"
         >
-          <div>
-            <p className="text-sm">{visit.page}</p>
-            <p className="text-xs text-zinc-500">
-              {new Date(visit.timestamp).toLocaleTimeString()}
-            </p>
-          </div>
-          <span className="text-xs px-2 py-1 bg-zinc-800 rounded">
-            {visit.country}
+          <span className="text-zinc-400">
+            {new Date(visit.timestamp).toLocaleString()}
+          </span>
+          <span className="text-[var(--green)]">
+            {visit.page} - {visit.country}
           </span>
         </motion.div>
       ))}
@@ -87,14 +73,25 @@ const RecentVisits = ({ visits }: { visits: VisitorData["recentVisits"] }) => (
 );
 
 export function Analytics() {
-  const [data, setData] = useState<VisitorData | null>(null);
+  const [data, setData] = useState<AnalyticsData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Function to fetch and update data
     const fetchData = async () => {
-      const analyticsData = await getAnalytics();
-      if (analyticsData) {
-        setData(analyticsData);
+      try {
+        setLoading(true);
+        const analyticsData = await getAnalytics();
+        if (analyticsData) {
+          setData(analyticsData);
+          setError(null);
+        }
+      } catch (err) {
+        console.error('Failed to fetch analytics:', err);
+        setError('Failed to load analytics data');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -107,6 +104,22 @@ export function Analytics() {
     return () => clearInterval(interval);
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[200px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--green)]" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+        {error}
+      </div>
+    );
+  }
+
   if (!data) return null;
 
   // Calculate daily visitors (today)
@@ -114,16 +127,22 @@ export function Analytics() {
   const dailyVisitors = data.dailyVisitors[today] || 0;
 
   // Convert page views to array format
-  const pageViewsArray = Object.entries(data.pageViews).map(([page, views]) => ({
-    label: page,
-    value: views,
-  })).sort((a, b) => b.value - a.value);
+  const pageViewsArray = Object.entries(data.pageViews)
+    .map(([page, views]) => ({
+      label: page,
+      value: views,
+    }))
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 5); // Show top 5
 
   // Convert country data to array format
-  const countryArray = Object.entries(data.visitorsByCountry).map(([country, visitors]) => ({
-    label: country,
-    value: visitors,
-  })).sort((a, b) => b.value - a.value);
+  const countryArray = Object.entries(data.visitorsByCountry)
+    .map(([country, visitors]) => ({
+      label: country,
+      value: visitors,
+    }))
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 5); // Show top 5
 
   return (
     <div className="space-y-8">
@@ -132,23 +151,13 @@ export function Analytics() {
         <StatCard title="Total Visitors" value={data.totalVisitors} />
         <StatCard title="Daily Visitors" value={dailyVisitors} />
         <StatCard title="Total Pages" value={Object.keys(data.pageViews).length} />
-        <StatCard 
-          title="Most Visited Page" 
-          value={pageViewsArray[0]?.value || 0} 
-          suffix={` (${pageViewsArray[0]?.label || 'None'})`}
-        />
+        <StatCard title="Countries" value={Object.keys(data.visitorsByCountry).length} />
       </div>
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <BarChart
-          title="Page Views"
-          data={pageViewsArray}
-        />
-        <BarChart
-          title="Visitors by Country"
-          data={countryArray}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <BarChart data={pageViewsArray} title="Popular Pages" />
+        <BarChart data={countryArray} title="Visitors by Country" />
       </div>
 
       {/* Recent Visits */}
