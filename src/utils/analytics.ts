@@ -13,49 +13,84 @@ async function getVisitorCountry(): Promise<string> {
     // Check cache first
     const cachedData = localStorage.getItem(COUNTRY_CACHE_KEY);
     if (cachedData) {
-      const parsed: CachedCountry = JSON.parse(cachedData);
-      const now = Date.now();
-      if (now - parsed.timestamp < CACHE_DURATION) {
-        console.log('Using cached country:', parsed.country);
-        return parsed.country;
+      try {
+        const parsed: CachedCountry = JSON.parse(cachedData);
+        const now = Date.now();
+        if (now - parsed.timestamp < CACHE_DURATION && parsed.country !== 'Unknown' && parsed.country !== 'test') {
+          console.log('Using cached country:', parsed.country);
+          return parsed.country;
+        }
+      } catch (cacheError) {
+        console.warn('Failed to parse cached country data:', cacheError);
+        localStorage.removeItem(COUNTRY_CACHE_KEY);
       }
     }
 
     // Try ipapi.co first
     try {
-      const response = await fetch('https://ipapi.co/json/');
+      console.log('Attempting to get country from ipapi.co...');
+      const response = await fetch('https://ipapi.co/json/', {
+        headers: {
+          'Accept': 'application/json',
+          'User-Agent': 'Mozilla/5.0 (Portfolio Analytics)'
+        }
+      });
+      
       if (response.ok) {
         const data = await response.json();
-        if (data.country_code) {
+        if (data.country_code && typeof data.country_code === 'string' && data.country_code.length === 2) {
+          const country = data.country_code.toUpperCase();
           // Cache the result
           localStorage.setItem(COUNTRY_CACHE_KEY, JSON.stringify({
-            country: data.country_code,
+            country: country,
             timestamp: Date.now()
           }));
-          console.log('Country detected from ipapi.co:', data.country_code);
-          return data.country_code;
+          console.log('Country detected from ipapi.co:', country);
+          return country;
+        } else {
+          console.warn('Invalid country code from ipapi.co:', data);
+          throw new Error('Invalid country code from ipapi.co');
         }
+      } else {
+        console.warn('ipapi.co response not ok:', response.status);
+        throw new Error(`ipapi.co failed with status ${response.status}`);
       }
-      // If we get here, ipapi.co failed or returned invalid data
-      throw new Error('ipapi.co failed or returned invalid data');
     } catch (ipapiError) {
       console.warn('ipapi.co failed:', ipapiError);
       
-      // Fallback to ip-api.com
-      const response = await fetch('http://ip-api.com/json/');
-      if (response.ok) {
-        const data = await response.json();
-        if (data.countryCode) {
-          // Cache the result
-          localStorage.setItem(COUNTRY_CACHE_KEY, JSON.stringify({
-            country: data.countryCode,
-            timestamp: Date.now()
-          }));
-          console.log('Country detected from ip-api.com:', data.countryCode);
-          return data.countryCode;
+      // Fallback to ip-api.com with HTTPS
+      try {
+        console.log('Attempting to get country from ip-api.com...');
+        const response = await fetch('https://ip-api.com/json/', {
+          headers: {
+            'Accept': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Portfolio Analytics)'
+          }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data.countryCode && typeof data.countryCode === 'string' && data.countryCode.length === 2) {
+            const country = data.countryCode.toUpperCase();
+            // Cache the result
+            localStorage.setItem(COUNTRY_CACHE_KEY, JSON.stringify({
+              country: country,
+              timestamp: Date.now()
+            }));
+            console.log('Country detected from ip-api.com:', country);
+            return country;
+          } else {
+            console.warn('Invalid country code from ip-api.com:', data);
+            throw new Error('Invalid country code from ip-api.com');
+          }
+        } else {
+          console.warn('ip-api.com response not ok:', response.status);
+          throw new Error(`ip-api.com failed with status ${response.status}`);
         }
+      } catch (ipApiError) {
+        console.error('Both geolocation services failed:', { ipapiError, ipApiError });
+        throw new Error('All geolocation services failed');
       }
-      throw new Error('Both geolocation services failed');
     }
   } catch (error) {
     console.error('Failed to detect country:', error);
@@ -64,8 +99,10 @@ async function getVisitorCountry(): Promise<string> {
       const cachedData = localStorage.getItem(COUNTRY_CACHE_KEY);
       if (cachedData) {
         const parsed: CachedCountry = JSON.parse(cachedData);
-        console.log('Using expired cached country as fallback:', parsed.country);
-        return parsed.country;
+        if (parsed.country !== 'Unknown' && parsed.country !== 'test') {
+          console.log('Using expired cached country as fallback:', parsed.country);
+          return parsed.country;
+        }
       }
     } catch (cacheError) {
       console.error('Failed to read country cache:', cacheError);
@@ -86,6 +123,13 @@ export async function trackPageView(page: string) {
 
     // Get country and record the visit
     const country = await getVisitorCountry();
+    
+    // Validate country code before sending
+    if (!country || country === 'test' || country === 'Unknown' || country.length !== 2) {
+      console.warn('Invalid country code detected:', country);
+      return;
+    }
+    
     console.log('Tracking page view with country:', country);
     
     const response = await fetch('/api/analytics', {

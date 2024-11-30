@@ -53,29 +53,79 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
   }
 }
 
+// Analytics Schema
 const analyticsSchema = new mongoose.Schema<AnalyticsData>({
-  totalVisitors: { type: Number, default: 0 },
+  totalVisitors: { 
+    type: Number, 
+    default: 0,
+    min: 0
+  },
   dailyVisitors: { 
-    type: Object, 
-    default: {} 
+    type: Object,
+    default: () => ({}),
   },
   pageViews: { 
-    type: Object, 
-    default: {} 
+    type: Object,
+    default: () => ({}),
   },
   visitorsByCountry: { 
-    type: Object, 
-    default: {} 
+    type: Object,
+    default: () => ({}),
+    validate: {
+      validator: function(v: Record<string, number>) {
+        return Object.entries(v).every(([country, count]) => 
+          typeof country === 'string' && 
+          country.length === 2 && 
+          typeof count === 'number' && 
+          count >= 0
+        );
+      },
+      message: 'visitorsByCountry must have 2-letter country codes and non-negative values'
+    }
   },
   recentVisits: [{
     timestamp: { type: String, required: true },
-    country: { type: String, required: true },
+    country: { 
+      type: String, 
+      required: true,
+      validate: {
+        validator: function(v: string) {
+          return v.length === 2 && v !== 'UN' && v !== 'TE';
+        },
+        message: 'Country code must be a valid 2-letter code'
+      }
+    },
     page: { type: String, required: true },
     userAgent: { type: String, required: true }
   }]
 }, {
   timestamps: true,
-  strict: false
+  strict: true // Change to true to enforce schema validation
 });
 
+// Ensure indexes for better query performance
+analyticsSchema.index({ 'recentVisits.timestamp': -1 });
+analyticsSchema.index({ createdAt: 1 });
+analyticsSchema.index({ updatedAt: 1 });
+
+// Pre-save middleware to ensure all country codes are uppercase
+analyticsSchema.pre('save', function(next) {
+  if (this.isModified('visitorsByCountry') || this.isModified('recentVisits')) {
+    // Convert country codes to uppercase in visitorsByCountry
+    const newVisitorsByCountry: Record<string, number> = {};
+    Object.entries(this.visitorsByCountry).forEach(([key, value]) => {
+      newVisitorsByCountry[key.toUpperCase()] = value;
+    });
+    this.visitorsByCountry = newVisitorsByCountry;
+
+    // Convert country codes to uppercase in recentVisits
+    this.recentVisits = this.recentVisits.map(visit => ({
+      ...visit,
+      country: visit.country.toUpperCase()
+    }));
+  }
+  next();
+});
+
+// Analytics Model
 export const Analytics = mongoose.models.Analytics || mongoose.model<AnalyticsData>('Analytics', analyticsSchema);

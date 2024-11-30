@@ -16,9 +16,9 @@ const nextConfig = {
             value: `
               default-src 'self';
               script-src 'self' 'unsafe-inline' 'unsafe-eval';
-              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.codepen.io;
               img-src 'self' data: https: blob:;
-              font-src 'self' https://fonts.gstatic.com;
+              font-src 'self' https://fonts.gstatic.com https://assets.codepen.io https://raw.githubusercontent.com;
               connect-src 'self' https://api.github.com https://ipapi.co https://ip-api.com;
               frame-ancestors 'none';
             `.replace(/\s+/g, ' ').trim()
