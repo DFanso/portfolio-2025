@@ -1,6 +1,6 @@
 'use client';
 import { motion } from "framer-motion";
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projects } from '@/data/projects';
 
 interface FeaturedProjectsProps {
@@ -33,23 +33,34 @@ export default function FeaturedProjects({ onHover }: FeaturedProjectsProps) {
           >
             <div className="flex justify-between items-start relative z-10">
               <h3 className="text-xl font-bold mb-2 cyber-font">{project.title}</h3>
-              {project.repoUrl && (
-                <div 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const newWindow = window.open();
-                    if (newWindow) {
-                      newWindow.location = project.repoUrl!;
-                    }
-                  }}
-                  className="block p-2 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors relative z-20 pointer-events-auto cursor-pointer"
-                  role="link"
-                  aria-label={`Open ${project.title} repository in new tab`}
-                >
-                  <FaGithub className="text-2xl hover:text-[var(--accent)] transition-colors" />
-                </div>
-              )}
+              <div className="flex gap-2">
+                {project.demoUrl && (
+                  <a 
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block p-2 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors relative z-20 pointer-events-auto"
+                    onMouseEnter={() => onHover(true)}
+                    onMouseLeave={() => onHover(false)}
+                    title="View Live Demo"
+                  >
+                    <FaExternalLinkAlt className="text-lg hover:text-[var(--accent)] transition-colors" />
+                  </a>
+                )}
+                {project.repoUrl && (
+                  <a 
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block p-2 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors relative z-20 pointer-events-auto"
+                    onMouseEnter={() => onHover(true)}
+                    onMouseLeave={() => onHover(false)}
+                    title="View Source Code"
+                  >
+                    <FaGithub className="text-2xl hover:text-[var(--accent)] transition-colors" />
+                  </a>
+                )}
+              </div>
             </div>
             <p className="relative z-10">{project.description}</p>
             <div className="flex flex-wrap gap-2 relative z-10">
