@@ -165,14 +165,14 @@ export function Analytics() {
       value: visitors,
     }))
     .sort((a, b) => b.value - a.value)
-    .slice(0, 5); // Show top 5
+    .slice(0, 10); // Show top 5
 
   return (
     <div className="space-y-8">
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard title="Total Visitors" value={data.totalVisitors} />
-        <StatCard title="Daily Visitors" value={dailyVisitors} />
+        {/* <StatCard title="Daily Visitors" value={dailyVisitors} /> */}
         <StatCard title="Countries" value={Object.keys(data.visitorsByCountry).length} />
       </div>
 
