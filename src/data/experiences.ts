@@ -51,12 +51,13 @@ export const experiences: Experience[] = [
     ],
     technologies: [
       { name: "Next.js", color: "nextjs" },
+      { name:"MySQL", color:"mysql"},
       { name: "NestJS", color: "nestjs" },
       { name: "Swagger", color: "swagger" },
       { name: "TypeScript", color: "typescript" },
       { name: "Docker", color: "docker" },
       { name: "Kubernetes", color: "kubernetes" },
-      { name:"MySQL", color:"mysql"},
+      
     ]
   },
   {

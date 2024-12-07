@@ -20,14 +20,17 @@ export default function TopSkills({ onHover }: TopSkillsProps) {
     { text: "NestJS", color: "nestjs" },
     { text: "TypeScript", color: "typescript" },
     { text: "SQL", color: "sql" },
+    { text: "Node.js", color: "nodejs" },
     { text: "System Architecture", color: "pink" },
+    { text: "AWS", color: "aws" },
     { text: "Terraform", color: "terraform" },
     { text: "Load Testing", color: "purple" },
     { text: "Infrastructure as Code", color: "green" },
-    { text: "Azure DevOps", color: "azure" },
-    { text: "Node.js", color: "nodejs" },
     { text: "Docker", color: "docker" },
-    { text: "AWS", color: "aws" }
+    { text: "Azure DevOps", color: "azure" },
+    
+    
+    
   ];
 
   return (
