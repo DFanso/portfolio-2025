@@ -87,7 +87,7 @@ export default function FeaturedProjects({ setIsHovered }: FeaturedProjectsProps
                 )}
               </div>
             </div>
-            <p className="relative z-10 text-sm sm:text-base">
+            <p className="relative z-10 text-sm sm:text-base font-normal leading-relaxed tracking-normal">
               {windowWidth < 640 
                 ? project.description.length > 120 
                   ? `${project.description.slice(0, 120)}...`
