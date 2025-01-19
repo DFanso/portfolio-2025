@@ -50,6 +50,15 @@
   --firebase: #FFCA28;
   --discord: #5865F2;
   --instagram: #E4405F;
+  --go: #00ADD8;
+  --jenkins: #D24939;
+  --gitlab: #FC6D26;
+  --prometheus: #E6522C;
+  --grafana: #F46800;
+  --elastic: #FEC514;
+  --postgresql: #336791;
+  --redis: #DC382D;
+  --cloudflare: #F48120;
 }
 
 .dark {
@@ -407,6 +416,42 @@
   }
   .skill-tag[data-color="instagram"] {
     background-color: var(--instagram);
+    color: white;
+  }
+  .skill-tag[data-color="go"] {
+    background-color: var(--go);
+    color: white;
+  }
+  .skill-tag[data-color="jenkins"] {
+    background-color: var(--jenkins);
+    color: white;
+  }
+  .skill-tag[data-color="gitlab"] {
+    background-color: var(--gitlab);
+    color: white;
+  }
+  .skill-tag[data-color="prometheus"] {
+    background-color: var(--prometheus);
+    color: white;
+  }
+  .skill-tag[data-color="grafana"] {
+    background-color: var(--grafana);
+    color: white;
+  }
+  .skill-tag[data-color="elastic"] {
+    background-color: var(--elastic);
+    color: black;
+  }
+  .skill-tag[data-color="postgresql"] {
+    background-color: var(--postgresql);
+    color: white;
+  }
+  .skill-tag[data-color="redis"] {
+    background-color: var(--redis);
+    color: white;
+  }
+  .skill-tag[data-color="cloudflare"] {
+    background-color: var(--cloudflare);
     color: white;
   }
 
