@@ -19,21 +19,26 @@ export const experiences: Experience[] = [
     position: "Associate DevOps Engineer",
     period: "November 2024 - Present",
     current: true,
-    description: "As an Associate DevOps Engineer at Empite, I specialize in:",
+    description: "As an Associate DevOps & Backend Engineer at Empite, I specialize in:",
     items: [
       "Building and maintaining CI/CD pipelines using Azure DevOps",
+      "Developing backend services using NestJS and TypeScript",
+      "Designing and implementing RESTful APIs and microservices",
       "Infrastructure as Code (IaC) implementation with Terraform",
       "Container orchestration with Docker and Kubernetes",
       "Cloud infrastructure management on AWS and Azure",
-      "Monitoring and logging system implementation",
-      "Automation of deployment processes"
+      "Database design and optimization with MySQL",
+      "Monitoring and logging system implementation"
     ],
     technologies: [
       { name: "Azure DevOps", color: "azure" },
       { name: "AWS", color: "aws" },
+      { name: "NestJS", color: "nestjs" },
+      { name: "TypeScript", color: "typescript" },
       { name: "Docker", color: "docker" },
       { name: "Kubernetes", color: "kubernetes" },
       { name: "Terraform", color: "terraform" },
+      { name: "MySQL", color: "mysql" },
       { name: "CI/CD", color: "accent" }
     ]
   },
